@@ -11,7 +11,7 @@ export function Watermark({
 }) {
   return (
     <div className={`watermark ${className ?? ""}`} aria-hidden>
-      <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+      <div className="watermark-plane absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col">
         {Array.from({ length: rows }).map((_, i) => (
           <div
             key={i}

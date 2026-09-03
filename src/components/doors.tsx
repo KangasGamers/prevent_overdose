@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ArrowRight } from "./icons";
 import { Watermark } from "./watermark";
 
@@ -11,8 +11,11 @@ type Door = {
   label: string;
   consequence: string;
   tone: "red" | "paper" | "blush";
-  /** Relative flex weight at rest. The red door leads. */
+  /** Relative flex weight at rest on desktop. The red door leads. */
   rest: number;
+  /** Stacked height on mobile, where flex-grow does nothing. The triage
+   *  hierarchy has to survive the breakpoint that carries most of the traffic. */
+  stacked: string;
 };
 
 const DOORS: Door[] = [
@@ -24,6 +27,7 @@ const DOORS: Door[] = [
       "Free kits, no cost and no questions. Plus how to use one when it matters.",
     tone: "red",
     rest: 1.45,
+    stacked: "min-h-[23rem]",
   },
   {
     id: "help",
@@ -33,6 +37,7 @@ const DOORS: Door[] = [
       "Volunteer, fund kits, or bring a training to your school or workplace.",
     tone: "paper",
     rest: 1,
+    stacked: "min-h-[15rem]",
   },
   {
     id: "about",
@@ -42,41 +47,42 @@ const DOORS: Door[] = [
       "A 501(c)(3) in Avon, Connecticut. Our mission, our filings, our open board seats.",
     tone: "blush",
     rest: 0.85,
+    stacked: "min-h-[13.5rem]",
   },
 ];
 
 const TONE = {
   red: {
-    panel: "bg-red text-paper on-red",
+    base: "bg-red",
+    dim: "bg-red-deep",
+    text: "text-paper on-red",
     rule: "bg-[var(--rule-on-red)]",
     consequence: "text-paper-on-red",
     arrow: "text-paper",
-    // Watermark ink per field: the texture is continuous across all three
-    // panels, but each ground needs its own opacity to stay behind the copy.
-    mark: "text-paper opacity-[0.13]",
   },
   paper: {
-    panel: "bg-paper text-ink",
+    base: "bg-paper",
+    dim: "bg-paper-deep",
+    text: "text-ink",
     rule: "bg-[var(--rule-strong)]",
     consequence: "text-ink-soft",
     arrow: "text-red",
-    mark: "text-ink opacity-[0.05]",
   },
   blush: {
-    panel: "bg-blush text-ink",
+    base: "bg-blush",
+    dim: "bg-blush-deep",
+    text: "text-ink",
     rule: "bg-[var(--rule-strong)]",
     consequence: "text-ink-soft",
     // Brand red on blush measures 3.74:1 — below AA for this 11px label.
     // red-deep holds the brand and clears it at 5.6:1.
     arrow: "text-red-deep",
-    mark: "text-red opacity-[0.10]",
   },
 } as const;
 
 export function Doors() {
   const [active, setActive] = useState<string | null>(null);
   const [reduced, setReduced] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -89,16 +95,20 @@ export function Doors() {
   const weightFor = useCallback(
     (door: Door) => {
       if (active === null) return door.rest;
-      return active === door.id ? door.rest + 0.75 : Math.max(door.rest - 0.28, 0.55);
+      return active === door.id
+        ? door.rest + 0.75
+        : Math.max(door.rest - 0.28, 0.55);
     },
     [active],
   );
 
   return (
     <div
-      ref={containerRef}
       onMouseLeave={() => setActive(null)}
-      className="flex w-full flex-col md:h-[calc(100svh-var(--header-h))] md:min-h-[34rem] md:flex-row"
+      className="
+        relative isolate flex w-full flex-col
+        md:h-[calc(100svh-var(--header-h))] md:min-h-[34rem] md:flex-row
+      "
     >
       {DOORS.map((door, i) => {
         const tone = TONE[door.tone];
@@ -116,38 +126,22 @@ export function Doors() {
               flexGrow: weightFor(door),
               flexBasis: 0,
               transitionDuration: reduced ? "0ms" : "700ms",
-              animationDelay: reduced ? "0ms" : `${i * 110}ms`,
             }}
             className={`
-              group door-rise relative isolate flex min-h-[15rem] flex-col justify-end
-              overflow-hidden px-6 pb-10 pt-14 outline-offset-[-3px]
-              transition-[flex-grow] ease-[var(--ease-out-expo)]
-              md:min-h-0 md:px-8 md:pb-14
-              ${tone.panel}
+              group relative flex flex-col justify-end overflow-hidden
+              px-6 pb-10 pt-14 outline-offset-[-3px]
+              transition-[flex-grow,background-color] ease-[var(--ease-out-expo)]
+              ${door.stacked} md:!min-h-0 md:px-8 md:pb-14
+              ${dimmed ? tone.dim : tone.base} ${tone.text}
               ${i > 0 ? "border-t md:border-l md:border-t-0" : ""}
               border-[var(--rule-strong)]
             `}
           >
-            <Watermark
-              rows={11}
-              className={`
-                ${tone.mark}
-                transition-transform duration-[900ms] ease-[var(--ease-out-expo)]
-                group-hover:scale-110
-              `}
-            />
-
-            {/* The active field deepens rather than lifting: no shadow, no float. */}
+            {/* z-20 keeps the copy above the shared watermark plane below. */}
             <span
-              aria-hidden
-              className={`
-                pointer-events-none absolute inset-0 -z-10 bg-ink
-                transition-opacity duration-500 ease-[var(--ease-out-expo)]
-                ${dimmed ? "opacity-[0.07]" : "opacity-0"}
-              `}
-            />
-
-            <span className="relative flex flex-col gap-5">
+              className="door-rise relative z-20 flex flex-col gap-5"
+              style={{ animationDelay: reduced ? "0ms" : `${i * 110}ms` }}
+            >
               <span
                 aria-hidden
                 className={`block h-px w-full origin-left rule-draw ${tone.rule}`}
@@ -162,7 +156,7 @@ export function Doors() {
                 className={`
                   measure-tight text-[0.9375rem] leading-relaxed transition-opacity
                   duration-500 ${tone.consequence}
-                  ${dimmed ? "opacity-55" : "opacity-100"}
+                  ${dimmed ? "opacity-60" : "opacity-100"}
                 `}
               >
                 {door.consequence}
@@ -171,17 +165,30 @@ export function Doors() {
               <span className={`flex items-center gap-2 pt-1 ${tone.arrow}`}>
                 <span className="label">Enter</span>
                 <ArrowRight
-                  className={`
+                  className="
                     h-[1.15rem] w-[1.15rem] transition-transform duration-500
                     ease-[var(--ease-out-expo)] group-hover:translate-x-1.5
                     group-focus-visible:translate-x-1.5
-                  `}
+                  "
                 />
               </span>
             </span>
           </Link>
         );
       })}
+
+      {/*
+        ONE watermark plane for the whole fork rather than one per panel.
+        Per-panel planes each centred their own tiling, so the pattern restarted
+        at every seam. This sits above the opaque grounds and blends into them,
+        so the texture is genuinely continuous and each ground tints it
+        differently on its own. It holds still while the panels resize, which is
+        the differential motion the direction asks for.
+      */}
+      <Watermark
+        rows={12}
+        className="z-10 text-paper opacity-[0.55] mix-blend-soft-light"
+      />
     </div>
   );
 }

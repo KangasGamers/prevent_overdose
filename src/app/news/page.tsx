@@ -20,9 +20,8 @@ export default function NewsPage() {
               <li key={a.slug} className="border-b border-[var(--rule-strong)]">
                 <Link
                   href={`/news/${a.slug}`}
-                  className="group grid gap-x-10 gap-y-4 py-10 md:grid-cols-[9rem_1fr_auto] md:py-12"
+                  className="group grid gap-x-10 gap-y-4 py-10 md:grid-cols-[1fr_auto] md:py-12"
                 >
-                  <span className="label pt-1.5 text-red">{a.kicker}</span>
                   <div>
                     <h2 className="display-tight text-[clamp(1.6rem,3vw,2.3rem)]">
                       {a.title}

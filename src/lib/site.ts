@@ -87,7 +87,6 @@ export const articles = [
     readingTime: "1 min read",
     summary:
       "Fentanyl is roughly fifty times more potent than heroin, and it now appears in counterfeit pills and powders that were never sold as opioids at all. Understanding the potency is the first step to understanding why reversal medication has to be everywhere.",
-    kicker: "Fentanyl",
   },
   {
     slug: "the-science-behind-an-overdose",
@@ -96,7 +95,6 @@ export const articles = [
     readingTime: "3 min read",
     summary:
       "An overdose occurs when a person consumes a harmful amount of a substance, leading to serious health consequences or even death. Opioids bind to receptors in the brainstem that regulate breathing — which is what naloxone interrupts.",
-    kicker: "Physiology",
   },
   {
     slug: "narcan-distribution-as-a-vital-strategy",
@@ -105,7 +103,6 @@ export const articles = [
     readingTime: "4 min read",
     summary:
       "The opioid crisis is a major challenge affecting communities across the United States and beyond. Putting naloxone directly into the hands of the people most likely to witness an overdose is among the most direct interventions available.",
-    kicker: "Strategy",
   },
   {
     slug: "understanding-rising-trends-of-opioid-overdose-deaths",
@@ -114,7 +111,6 @@ export const articles = [
     readingTime: "4 min read",
     summary:
       "The opioid crisis is one of the most critical public health issues facing the United States. Over the past few years the shape of the epidemic has changed, and the response has had to change with it.",
-    kicker: "Trends",
   },
 ] as const;
 

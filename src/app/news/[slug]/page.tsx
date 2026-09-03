@@ -81,8 +81,7 @@ export default async function ArticlePage({
                   href={`/news/${a.slug}`}
                   className="group flex h-full flex-col p-8 transition-colors duration-200 hover:bg-paper"
                 >
-                  <span className="label text-red">{a.kicker}</span>
-                  <h3 className="display-tight mt-4 text-[1.4rem]">{a.title}</h3>
+                  <h3 className="display-tight text-[1.4rem]">{a.title}</h3>
                   <span className="mt-auto flex items-center gap-2 pt-8 text-red">
                     <span className="label">Read</span>
                     <ArrowRight className="h-4 w-4 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />

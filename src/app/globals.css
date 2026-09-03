@@ -186,10 +186,16 @@ a {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.03em;
-  line-height: 1.25;
-  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  /* Size comes from font-size, never from transform: scale(). Scaling a row
+     past its own line box made adjacent rows overlap and merge into nonsense
+     letterforms. line-height must clear the cap height at this size. */
+  line-height: 1.5;
+  font-size: clamp(2.25rem, 4.4vw, 4rem);
   color: currentColor;
-  transform: rotate(-8deg) scale(1.35);
+}
+
+.watermark-plane {
+  transform: rotate(-8deg);
   transform-origin: center;
 }
 
