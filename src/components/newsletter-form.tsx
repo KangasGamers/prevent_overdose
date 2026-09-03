@@ -2,21 +2,24 @@
 
 import { useState } from "react";
 import { ArrowRight, Check } from "./icons";
+import { Honeypot } from "./honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 type State = "idle" | "submitting" | "done" | "error";
 
 /**
- * Mockup form. No backend this phase — it validates, shows every state, and
- * resolves locally. Phone is deliberately absent: the incumbent site required it
- * on every page footer, which is pure friction on a newsletter signup.
+ * Newsletter signup. Posts to /api/submit, which emails the org. Phone is
+ * deliberately absent: the incumbent site required it on every page footer,
+ * which is pure friction on a newsletter signup.
  */
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<State>("idle");
   const [message, setMessage] = useState("");
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
     const value = email.trim();
 
     if (!value) {
@@ -32,8 +35,13 @@ export function NewsletterForm() {
 
     setState("submitting");
     setMessage("");
-    await new Promise((r) => setTimeout(r, 700));
-    setState("done");
+    try {
+      await submitForm("newsletter", { email: value, website });
+      setState("done");
+    } catch (err) {
+      setState("error");
+      setMessage(err instanceof Error ? err.message : "Something went wrong.");
+    }
   }
 
   if (state === "done") {
@@ -54,7 +62,8 @@ export function NewsletterForm() {
   const invalid = state === "error";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="mt-6">
+    <form onSubmit={onSubmit} noValidate className="relative mt-6">
+      <Honeypot />
       <label htmlFor="newsletter-email" className="label text-slate">
         Email address
       </label>

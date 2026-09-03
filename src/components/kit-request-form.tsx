@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ArrowRight, Check, Shield } from "./icons";
+import { Honeypot } from "./honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 type State = "idle" | "submitting" | "done" | "error";
 
@@ -19,11 +21,13 @@ const DELIVERY = [
 export function KitRequestForm() {
   const [state, setState] = useState<State>("idle");
   const [contact, setContact] = useState("");
+  const [name, setName] = useState("");
   const [delivery, setDelivery] = useState<string>("pickup");
   const [error, setError] = useState("");
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
     const value = contact.trim();
     if (!value) {
       setState("error");
@@ -32,8 +36,18 @@ export function KitRequestForm() {
     }
     setState("submitting");
     setError("");
-    await new Promise((r) => setTimeout(r, 800));
-    setState("done");
+    try {
+      await submitForm("kit-request", {
+        contact: value,
+        delivery,
+        website,
+        ...(name.trim() ? { name: name.trim() } : {}),
+      });
+      setState("done");
+    } catch (err) {
+      setState("error");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    }
   }
 
   return (
@@ -59,12 +73,10 @@ export function KitRequestForm() {
             </a>
             .
           </p>
-          <p className="mt-8 border border-dashed border-slate/50 px-4 py-3 text-[0.8125rem] text-slate">
-            Mockup only — nothing was sent or stored.
-          </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} noValidate className="px-7 py-8">
+        <form onSubmit={onSubmit} noValidate className="relative px-7 py-8">
+          <Honeypot />
           <fieldset className="border-0 p-0">
             <legend className="label text-slate">How should we get it to you?</legend>
             <div className="mt-4 flex flex-col gap-px bg-[var(--rule-strong)]">
@@ -133,6 +145,8 @@ export function KitRequestForm() {
             </label>
             <input
               id="kit-name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               disabled={state === "submitting"}
               placeholder="Leave blank if you'd rather not"
               className="mt-2 w-full border border-[var(--rule-strong)] bg-paper px-4 py-3.5 text-[0.9375rem] placeholder:text-slate/70 transition-colors duration-200 focus:border-red disabled:opacity-60"

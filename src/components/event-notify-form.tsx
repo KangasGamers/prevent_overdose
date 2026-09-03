@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { ArrowRight, Check } from "./icons";
+import { Honeypot } from "./honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 export function EventNotifyForm({ eventTitle }: { eventTitle: string }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [error, setError] = useState("");
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
     const v = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
       setState("error");
@@ -18,8 +21,13 @@ export function EventNotifyForm({ eventTitle }: { eventTitle: string }) {
     }
     setState("submitting");
     setError("");
-    await new Promise((r) => setTimeout(r, 700));
-    setState("done");
+    try {
+      await submitForm("event-notify", { email: v, event: eventTitle, website });
+      setState("done");
+    } catch (err) {
+      setState("error");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    }
   }
 
   return (
@@ -38,12 +46,10 @@ export function EventNotifyForm({ eventTitle }: { eventTitle: string }) {
           <p className="measure-tight mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
             We&rsquo;ll write as soon as {eventTitle} has a date.
           </p>
-          <p className="mt-8 border border-dashed border-slate/50 px-4 py-3 text-[0.8125rem] text-slate">
-            Mockup only — nothing was sent or stored.
-          </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} noValidate className="px-7 py-8">
+        <form onSubmit={onSubmit} noValidate className="relative px-7 py-8">
+          <Honeypot />
           <label htmlFor="notify-email" className="label text-slate">
             Email address
           </label>

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ArrowRight, Check } from "./icons";
+import { Honeypot } from "./honeypot";
+import { submitForm } from "@/lib/submit-form";
 
 const TOPICS = ["General", "Request a training", "Partnership", "Press"] as const;
 
@@ -10,10 +12,11 @@ export function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [topic, setTopic] = useState<string>(TOPICS[0]);
-  const [errors, setErrors] = useState<{ email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; message?: string; form?: string }>({});
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
     const next: { email?: string; message?: string } = {};
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()))
       next.email = email.trim() ? "Check that address for a typo." : "An email address, so we can reply.";
@@ -21,8 +24,18 @@ export function ContactForm() {
     setErrors(next);
     if (Object.keys(next).length) { setState("error"); return; }
     setState("submitting");
-    await new Promise((r) => setTimeout(r, 800));
-    setState("done");
+    try {
+      await submitForm("contact", {
+        email: email.trim(),
+        topic,
+        message: message.trim(),
+        website,
+      });
+      setState("done");
+    } catch (err) {
+      setState("error");
+      setErrors({ form: err instanceof Error ? err.message : "Something went wrong." });
+    }
   }
 
   if (state === "done") {
@@ -33,9 +46,6 @@ export function ContactForm() {
         <p className="measure-tight mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
           We usually reply within two business days.
         </p>
-        <p className="mt-8 border border-dashed border-slate/50 px-4 py-3 text-[0.8125rem] text-slate">
-          Mockup only — nothing was sent or stored.
-        </p>
       </div>
     );
   }
@@ -45,7 +55,8 @@ export function ContactForm() {
       <div className="border-b border-[var(--rule-strong)] bg-red px-7 py-6 text-paper on-red">
         <h2 className="display-tight text-[1.75rem]">Send a message</h2>
       </div>
-      <form onSubmit={onSubmit} noValidate className="px-7 py-8">
+      <form onSubmit={onSubmit} noValidate className="relative px-7 py-8">
+        <Honeypot />
         <div>
           <label htmlFor="c-topic" className="label text-slate">Topic</label>
           <select
@@ -88,6 +99,12 @@ export function ContactForm() {
           />
           {errors.message && <p id="c-msg-err" role="alert" className="mt-2 text-[0.875rem] text-red">{errors.message}</p>}
         </div>
+
+        {errors.form && (
+          <p role="alert" className="mt-6 text-[0.875rem] text-red">
+            {errors.form}
+          </p>
+        )}
 
         <button
           type="submit"

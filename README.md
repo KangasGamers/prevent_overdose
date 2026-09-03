@@ -3,20 +3,24 @@
 A visual redesign of [preventoverdose.co](https://www.preventoverdose.co), built as a
 running Next.js application.
 
-**This is a mockup, not an MVP.** Every route renders, every form validates and shows
-its full state machine, and nothing is transmitted or stored. Forms self-label as
-mockups on success.
+Every route renders. Donations run through the real Givebutter campaign, and the
+five forms email the organization through Resend. There is no database and no admin
+console yet — submissions land in an inbox, not a queue.
 
 ## Run it
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000
+cp .env.example .env.local   # then fill in the Resend values
+npm run dev                  # http://localhost:3000
 ```
 
 ```bash
 npm run build && npm start   # production build
 ```
+
+Without the `RESEND_*` / `FORMS_*` env vars the forms return a "couldn't send"
+error; everything else works.
 
 ## What's real and what isn't
 
@@ -72,8 +76,18 @@ editing:
 Text contrast is verified at zero failures across all routes. The design decisions and
 the backend plan are documented in `docs/superpowers/specs/` and `.impeccable/`.
 
+## Forms
+
+`get-narcan`, `volunteer`, `contact`, the footer newsletter, and event-notify all
+POST to `src/app/api/submit/route.ts`, which validates against the schemas in
+`src/lib/forms.ts` (shared shape, server is authoritative), drops honeypot hits,
+and emails the submission via Resend to `FORMS_TO_EMAIL` with the sender's address
+as reply-to. Set `RESEND_API_KEY`, `FORMS_TO_EMAIL`, and `FORMS_FROM_EMAIL` (see
+`.env.example`) locally and in the host's environment.
+
 ## Not built (deliberately out of scope)
 
-Narcan request fulfillment, donations, volunteer/training persistence, CMS, and admin
-auth. The architecture for those is specified in
+Narcan request fulfillment, a submissions database and admin console, newsletter
+list management, volunteer/training persistence, and a CMS. The architecture for
+those is specified in
 `docs/superpowers/specs/2026-09-02-preventoverdose-redesign-design.md`.
