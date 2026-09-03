@@ -1,56 +1,40 @@
+/* eslint-disable @next/next/no-img-element */
+
 /**
- * The wordmark and its nasal-applicator mark, rebuilt as vector rather than the
- * incumbent site's raster logo. Two lines, stacked tight, as on the original.
+ * The logo. Drop the artwork at `public/logo.png` and it renders here — used in
+ * the header and footer. The file already carries the "PREVENT OVERDOSE"
+ * lettering, so there is no separate text wordmark beside it.
+ *
+ * `MarkVector` below is the type-only fallback the site shipped with; it is not
+ * currently rendered.
  */
 
-export function Mark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 28 34"
-      fill="none"
-      aria-hidden
-      className={className}
-    >
-      {/* body of the device */}
-      <rect x="8" y="9" width="12" height="20" rx="1.4" fill="currentColor" />
-      {/* plunger */}
-      <rect x="11" y="1.5" width="6" height="6" rx="1" fill="currentColor" />
-      {/* nozzle */}
-      <path d="M12.4 7.5h3.2v2h-3.2z" fill="currentColor" />
-      {/* label window, knocked out */}
-      <rect
-        x="10.4"
-        y="13"
-        width="7.2"
-        height="8"
-        rx="0.6"
-        className="fill-paper"
-      />
-      <path
-        d="M11.6 15.4h4.8M11.6 17.2h4.8M11.6 19h3"
-        stroke="currentColor"
-        strokeWidth="0.9"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-export function Wordmark({
-  className,
-  markClassName,
-}: {
-  className?: string;
-  markClassName?: string;
-}) {
+export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
-      <Mark className={`h-8 w-auto shrink-0 ${markClassName ?? ""}`} />
-      <span className="display-tight text-[0.95rem] leading-[0.9]">
+      <img src="/logo.png" alt="" className="h-11 w-auto shrink-0" />
+      <span className="display-tight mt-[3px] text-[1.4rem] leading-[0.8]">
         Prevent
         <br />
         Overdose
       </span>
     </span>
+  );
+}
+
+export function MarkVector({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 118" fill="none" aria-hidden className={className}>
+      {/* atomizer stem, rising from the crossbar */}
+      <rect x="46" y="0" width="28" height="58" rx="14" fill="currentColor" />
+      {/* legs */}
+      <rect x="4" y="48" width="34" height="66" rx="8" fill="currentColor" />
+      <rect x="82" y="48" width="34" height="66" rx="8" fill="currentColor" />
+      {/* crossbar joining them into the H monogram */}
+      <rect x="4" y="48" width="112" height="32" rx="8" fill="currentColor" />
+      {/* keyhole slots in the legs, knocked out */}
+      <rect x="15" y="86" width="13" height="24" rx="6.5" className="fill-paper" />
+      <rect x="92" y="86" width="13" height="24" rx="6.5" className="fill-paper" />
+    </svg>
   );
 }

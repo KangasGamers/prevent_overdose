@@ -37,7 +37,13 @@ npm run build && npm start   # production build
   verified figure exists, so the site says "Not yet reported" rather than showing a zero.
 - Article bodies below the lede.
 - Legal policy text.
-- The Givebutter checkout, which mounts into a marked slot on `/donate`.
+
+The `/donate` page embeds the real Givebutter donation form inline via Givebutter's
+official web-components bundle (`widgets.givebutter.com`), rendering
+`<givebutter-giving-form>` for campaign `preventoverdoses` (the campaign behind the
+`givebutter.com/preventoverdose` Giving Hub). The kit tiers pre-fill the amount.
+Givebutter remains the processor and system of record for money; the account and
+campaign IDs live in `src/lib/site.ts`.
 
 ## Structure
 

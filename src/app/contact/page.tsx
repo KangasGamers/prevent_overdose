@@ -27,7 +27,7 @@ export default function ContactPage() {
                 {
                   Icon: Pin,
                   term: "Address",
-                  val: `${org.address.street}, ${org.address.city}, ${org.address.state} ${org.address.zip}`,
+                  val: `${org.address.city}, ${org.address.state} ${org.address.zip}`,
                 },
               ].map(({ Icon, term, val, href }) => (
                 <div key={term} className="flex flex-wrap items-baseline gap-x-8 gap-y-2 border-b border-[var(--rule-strong)] py-7">

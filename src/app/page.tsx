@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Doors } from "@/components/doors";
+import { DonationTracker } from "@/components/donation-tracker";
 import { Watermark } from "@/components/watermark";
 import { TrendChart } from "@/components/trend-chart";
 import { ArrowRight, NasalSpray, Users, Shield, Clock, Pin } from "@/components/icons";
@@ -21,6 +22,9 @@ export default function HomePage() {
 
       {/* The fork. Three audiences, three states, no single hero. */}
       <Doors />
+
+      {/* Live giving progress, in kits. Real Givebutter data or nothing. */}
+      <DonationTracker />
 
       {/* The mission, in its own field. */}
       <section className="relative isolate overflow-hidden border-y border-[var(--rule-strong)] bg-ink text-paper">

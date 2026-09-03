@@ -15,7 +15,7 @@ export function SiteFooter() {
     <footer className="border-t border-[var(--rule-strong)] bg-paper">
       <div className="mx-auto grid max-w-[90rem] gap-12 px-5 py-16 lg:grid-cols-[1.1fr_1fr_0.8fr] lg:gap-16 lg:px-8 lg:py-20">
         <div>
-          <Wordmark markClassName="text-red" />
+          <Wordmark />
           <p className="measure-tight mt-6 text-[0.9375rem] leading-relaxed text-ink-soft">
             Empowering communities with overdose education, Narcan access, and harm
             reduction. {org.tagline}
@@ -56,8 +56,6 @@ export function SiteFooter() {
                 <span className="sr-only">Address</span>
               </dt>
               <dd className="text-ink-soft">
-                {org.address.street}
-                <br />
                 {org.address.city}, {org.address.state} {org.address.zip}
               </dd>
             </div>

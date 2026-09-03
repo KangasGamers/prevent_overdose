@@ -22,13 +22,22 @@ export const org = {
   phone: "860-751-8658",
   phoneHref: "tel:+18607518658",
   address: {
-    street: "646 West Avon Road",
     city: "Avon",
     state: "CT",
     zip: "06001",
   },
   ein: "39-2213650",
   status: "501(c)(3)",
+  /** Givebutter account. `preventoverdose` is the public Giving Hub;
+   *  `preventoverdoses` (with an s) is the underlying campaign that money
+   *  actually lands in — confirmed via
+   *  givebutter.com/elements/api/v2/<acct>/campaigns/preventoverdoses. */
+  donateAccountId: "X9ZOzRGfpykvBkQ2",
+  donateUrl: "https://givebutter.com/preventoverdose",
+  /** Iframe-embeddable donation form for the campaign, resized by
+   *  https://givebutter.com/js/widget.js against `iframe[name="givebutter"]`.
+   *  Accepts `?amount=` to pre-fill. */
+  donateEmbedUrl: "https://givebutter.com/embed/c/preventoverdoses",
 } as const;
 
 export const nav = [

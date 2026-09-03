@@ -45,7 +45,7 @@ export function TrendChart({
       </figcaption>
 
       <div
-        className="mt-8 flex h-[15rem] items-end justify-start gap-[2px] sm:h-[17rem]"
+        className="mt-8 flex h-[16rem] items-stretch justify-start gap-[2px] sm:h-[18rem]"
         role="img"
         aria-describedby={tableId}
       >
@@ -58,12 +58,12 @@ export function TrendChart({
               key={d.year}
               onMouseEnter={() => setHover(i)}
               onMouseLeave={() => setHover(null)}
-              className="group relative flex h-full max-w-[8.5rem] flex-1 cursor-default flex-col justify-end"
+              className="group relative flex h-full max-w-[8.5rem] flex-1 cursor-default flex-col"
             >
               {/* value, direct-labeled */}
               <span
                 className={`
-                  tabular mb-2 block text-center text-[0.8125rem] font-semibold
+                  tabular mb-2 block shrink-0 text-center text-[0.8125rem] font-semibold
                   transition-colors duration-200
                   ${isHover || isLast ? "text-red" : "text-ink-soft"}
                 `}
@@ -71,18 +71,21 @@ export function TrendChart({
                 {d.deaths.toLocaleString()}
               </span>
 
-              <div
-                style={{ height: `${h}%` }}
-                className={`
-                  w-full rounded-t-[4px] transition-colors duration-200
-                  ${isLast ? "bg-red" : "bg-blush-deep"}
-                  ${isHover ? "!bg-red-deep" : ""}
-                `}
-              />
+              {/* track: bars scale against this, never against the flex column */}
+              <div className="flex flex-1 items-end">
+                <div
+                  style={{ height: `${h}%` }}
+                  className={`
+                    w-full rounded-t-[4px] transition-colors duration-200
+                    ${isLast ? "bg-red" : "bg-blush-deep"}
+                    ${isHover ? "!bg-red-deep" : ""}
+                  `}
+                />
+              </div>
 
               <span
                 className={`
-                  tabular mt-3 block border-t pt-2.5 text-center text-[0.8125rem]
+                  tabular mt-3 block shrink-0 border-t pt-2.5 text-center text-[0.8125rem]
                   transition-colors duration-200
                   ${isHover ? "border-red text-red" : "border-[var(--rule-strong)] text-slate"}
                 `}

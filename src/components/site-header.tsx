@@ -30,7 +30,7 @@ export function SiteHeader() {
           className="flex items-center gap-3 pl-5 pr-6 text-ink lg:pl-8"
           aria-label="PreventOverdose home"
         >
-          <Wordmark markClassName="text-red" />
+          <Wordmark />
         </Link>
 
         <nav

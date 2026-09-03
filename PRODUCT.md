@@ -61,7 +61,7 @@ evaluators it is trying to impress.
 **Confirmed real content** (carried from the live site, verbatim where quoted):
 
 - Mission, vision, and values statements.
-- Contact: leadership@preventoverdose.co · 860-751-8658 · 646 West Avon Road, Avon, CT 06001.
+- Contact: leadership@preventoverdose.co · 860-751-8658 · Avon, CT 06001 (street address withheld by request).
 - EIN 39-2213650, 501(c)(3).
 - Four articles: "The Dangers of Fentanyl", "The Science Behind an Overdose", "Narcan
   Distribution as a Vital Strategy in Addressing Opioid Overdoses", "Understanding the
