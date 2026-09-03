@@ -25,7 +25,7 @@ export default function GetNarcanPage() {
           <p className="display-tight text-[1.4rem]">
             If someone is not breathing, call 911 now
           </p>
-          <p className="text-[0.9375rem] text-paper/75">
+          <p className="text-[0.9375rem] text-paper-on-ink">
             Connecticut&rsquo;s Good Samaritan law protects you from arrest for
             drug possession when you call for help at an overdose.
           </p>

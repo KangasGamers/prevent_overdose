@@ -32,7 +32,7 @@ export function PageHeader({
         {lede && (
           <p
             className={`measure mt-8 text-[1.0625rem] leading-relaxed ${
-              isRed ? "text-paper-on-red" : "text-paper/80"
+              isRed ? "text-paper-on-red" : "text-paper-on-ink"
             }`}
           >
             {lede}

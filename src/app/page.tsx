@@ -29,7 +29,7 @@ export default function HomePage() {
           <p className="display text-[clamp(1.6rem,3.6vw,2.9rem)] leading-[1.06]">
             {org.mission}
           </p>
-          <p className="mt-8 text-[1.0625rem] text-paper/70">{org.tagline}</p>
+          <p className="mt-8 text-[1.0625rem] text-paper-on-ink">{org.tagline}</p>
         </div>
       </section>
 

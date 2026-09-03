@@ -1,0 +1,461 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-03T04:08:30Z",
+  "title": "Design System: PreventOverdose",
+  "extensions": {
+    "colorMeta": {
+      "red": {
+        "role": "primary",
+        "displayName": "Brand Red",
+        "canonical": "#c4322b",
+        "tonalRamp": [
+          "#2e0c0a",
+          "#4d1512",
+          "#6d1f1a",
+          "#96231e",
+          "#c4322b",
+          "#de3b32",
+          "#e88b86",
+          "#f6d4d2"
+        ]
+      },
+      "red-deep": {
+        "role": "primary",
+        "displayName": "Deep Red",
+        "canonical": "#96231e",
+        "tonalRamp": [
+          "#250908",
+          "#420f0d",
+          "#5f1613",
+          "#7c1c18",
+          "#96231e",
+          "#b93a34",
+          "#d98d89",
+          "#f2d1cf"
+        ]
+      },
+      "red-bright": {
+        "role": "primary",
+        "displayName": "Bright Red",
+        "canonical": "#de3b32",
+        "tonalRamp": [
+          "#320d0b",
+          "#521512",
+          "#731d19",
+          "#94261f",
+          "#b52f28",
+          "#de3b32",
+          "#ec8d88",
+          "#f8d5d3"
+        ]
+      },
+      "blush": {
+        "role": "secondary",
+        "displayName": "Blush",
+        "canonical": "#eecece",
+        "tonalRamp": [
+          "#3a2020",
+          "#573030",
+          "#754242",
+          "#935858",
+          "#b47474",
+          "#d0a0a0",
+          "#eecece",
+          "#faeeee"
+        ]
+      },
+      "blush-deep": {
+        "role": "secondary",
+        "displayName": "Blush Deep",
+        "canonical": "#e2b4b4",
+        "tonalRamp": [
+          "#361c1c",
+          "#522a2a",
+          "#6f3a3a",
+          "#8d4c4c",
+          "#ab6666",
+          "#c68d8d",
+          "#e2b4b4",
+          "#f5e0e0"
+        ]
+      },
+      "coral": {
+        "role": "tertiary",
+        "displayName": "Signal Coral",
+        "canonical": "#fe6161",
+        "tonalRamp": [
+          "#3c0f0f",
+          "#5f1717",
+          "#851f1f",
+          "#ab2929",
+          "#d13c3c",
+          "#fe6161",
+          "#ff9c9c",
+          "#ffd9d9"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f7f6f2",
+        "tonalRamp": [
+          "#1f1f1c",
+          "#383833",
+          "#54544d",
+          "#71716a",
+          "#8f8f88",
+          "#b4b4ad",
+          "#d8d8d1",
+          "#f7f6f2"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Paper Deep",
+        "canonical": "#eeece4",
+        "tonalRamp": [
+          "#1e1d19",
+          "#353329",
+          "#514e42",
+          "#6d6a5c",
+          "#8c8879",
+          "#b0ad9e",
+          "#d2cfc3",
+          "#eeece4"
+        ]
+      },
+      "paper-on-red": {
+        "role": "neutral",
+        "displayName": "Paper on Red",
+        "canonical": "#fbf0ef",
+        "tonalRamp": [
+          "#231615",
+          "#3d2523",
+          "#583633",
+          "#754a46",
+          "#95655f",
+          "#bb8f89",
+          "#dcbdb9",
+          "#fbf0ef"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#222222",
+        "tonalRamp": [
+          "#0d0d0d",
+          "#161616",
+          "#222222",
+          "#3a3a3a",
+          "#5c5c5c",
+          "#8a8a8a",
+          "#bdbdbd",
+          "#ededed"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#4a4a48",
+        "tonalRamp": [
+          "#131312",
+          "#22221f",
+          "#33332f",
+          "#4a4a48",
+          "#6a6a67",
+          "#93938f",
+          "#c0c0bc",
+          "#ececea"
+        ]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#575756",
+        "tonalRamp": [
+          "#161615",
+          "#252524",
+          "#3a3a39",
+          "#575756",
+          "#767674",
+          "#9c9c9a",
+          "#c5c5c3",
+          "#efefed"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "color-mix(in srgb, #222222 14%, transparent)"
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Structural Hairline",
+        "canonical": "color-mix(in srgb, #222222 28%, transparent)"
+      },
+      "rule-on-red": {
+        "role": "neutral",
+        "displayName": "Inverted Hairline",
+        "canonical": "color-mix(in srgb, #ffffff 26%, transparent)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Door labels, page-header H1, closing statements. Uppercase League Spartan, line-height below 1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section H2."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Ruled-index row headings, tile titles, form panel headings, wordmark, mobile nav."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Ledes and primary prose, capped at 68ch."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Door consequence lines, list descriptions, form copy; 52ch when supporting."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase action marker paired with the drawn arrow. Never a kicker above a heading."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Tabular lining figures for counts, years, percentages, phone numbers."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The system's only easing curve: door weighting, arrow slide, nav underline, rule draw."
+      },
+      {
+        "name": "door-weight",
+        "value": "700ms",
+        "purpose": "Flex-grow redistribution across the three homepage doors on hover or focus."
+      },
+      {
+        "name": "door-rise",
+        "value": "door-rise 0.9s cubic-bezier(0.16,1,0.3,1) both",
+        "purpose": "The one authored entrance: 28px lift with 6px blur, staggered 110ms per door."
+      },
+      {
+        "name": "rule-draw",
+        "value": "rule-draw 1.1s cubic-bezier(0.16,1,0.3,1) both",
+        "purpose": "Hairline scaling in from the left beneath a door label."
+      },
+      {
+        "name": "state-color",
+        "value": "200ms",
+        "purpose": "Default duration for every hover/focus color change."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation and transition durations forced to 0.01ms",
+        "purpose": "Under prefers-reduced-motion every state change is instant; the doors still reweight."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "container",
+        "value": "90rem"
+      },
+      {
+        "name": "header-h",
+        "value": "4.25rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Red block with uppercase label and drawn arrow; the default commit action on paper grounds.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><span>Send request</span><svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15\"/><path d=\"m13 6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;background:var(--color-red,#c4322b);color:var(--color-paper,#f7f6f2);border:1px solid var(--color-red,#c4322b);border-radius:0;padding:1rem 1.5rem;font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background-color .2s,border-color .2s}.ds-btn-primary .ds-arrow{width:1.15rem;height:1.15rem;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:var(--color-red-deep,#96231e);border-color:var(--color-red-deep,#96231e)}.ds-btn-primary:hover .ds-arrow{transform:translateX(6px)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-red,#c4322b);outline-offset:3px}"
+    },
+    {
+      "name": "Inverse Button",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Paper block used on red fields; hover fills blush. Blush appears only as an area.",
+      "html": "<a class=\"ds-btn-inverse\" href=\"#\"><span>Get a free kit</span><svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15\"/><path d=\"m13 6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-inverse{display:inline-flex;align-items:center;gap:.625rem;background:var(--color-paper,#f7f6f2);color:var(--color-ink,#222);border:none;border-radius:0;padding:1.125rem 1.75rem;font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background-color .2s}.ds-btn-inverse .ds-arrow{width:1.15rem;height:1.15rem;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-btn-inverse:hover{background:var(--color-blush,#eecece)}.ds-btn-inverse:hover .ds-arrow{transform:translateX(6px)}.ds-btn-inverse:focus-visible{outline:2px solid var(--color-paper,#f7f6f2);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Ink hairline on transparent; hover flips the whole control to a red ground.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\"><span>Tell me when it&rsquo;s set</span><svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15\"/><path d=\"m13 6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;gap:.625rem;background:transparent;color:var(--color-ink,#222);border:1px solid var(--color-ink,#222);border-radius:0;padding:1rem 1.5rem;font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background-color .2s,border-color .2s,color .2s}.ds-btn-outline .ds-arrow{width:1.15rem;height:1.15rem;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-btn-outline:hover{background:var(--color-red,#c4322b);border-color:var(--color-red,#c4322b);color:var(--color-paper,#f7f6f2)}.ds-btn-outline:hover .ds-arrow{transform:translateX(6px)}.ds-btn-outline:focus-visible{outline:2px solid var(--color-red,#c4322b);outline-offset:3px}"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Square paper field with a structural hairline; focus shifts the border to brand red. Label is the uppercase 11px label token.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-c\">Email or phone</label><input class=\"ds-input\" id=\"ds-c\" placeholder=\"you@example.com\"><p class=\"ds-field-hint\">That&rsquo;s the only thing we require.</p></div>",
+      "css": ".ds-field{font-family:Archivo,system-ui,sans-serif;background:var(--color-paper-deep,#eeece4);padding:1.75rem}.ds-field-label{display:block;font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--color-slate,#575756)}.ds-input{margin-top:.5rem;width:100%;box-sizing:border-box;background:var(--color-paper,#f7f6f2);color:var(--color-ink,#222);border:1px solid color-mix(in srgb,#222 28%,transparent);border-radius:0;padding:.875rem 1rem;font:inherit;font-size:.9375rem;transition:border-color .2s}.ds-input::placeholder{color:color-mix(in srgb,#575756 70%,transparent)}.ds-input:focus{border-color:var(--color-red,#c4322b);outline:2px solid var(--color-red,#c4322b);outline-offset:3px}.ds-field-hint{margin:.5rem 0 0;font-size:.8125rem;color:var(--color-slate,#575756)}"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Full-bleed sticky masthead: hairline-divided links with a red underline that scales in from the left, and a red donate block flush right.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Get Narcan</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\" aria-current=\"page\">Events</a><a class=\"ds-nav-link\" href=\"#\">About</a><a class=\"ds-nav-donate\" href=\"#\">Donate</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:stretch;height:4.25rem;background:var(--color-paper,#f7f6f2);border-bottom:1px solid color-mix(in srgb,#222 28%,transparent);font-family:Archivo,system-ui,sans-serif}.ds-nav-link{position:relative;display:flex;align-items:center;padding:0 1rem;font-size:.9375rem;font-weight:500;color:var(--color-ink-soft,#4a4a48);text-decoration:none;transition:color .2s}.ds-nav-link::after{content:\"\";position:absolute;left:1rem;right:1rem;bottom:0;height:2px;background:var(--color-red,#c4322b);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-nav-link:hover{color:var(--color-ink,#222)}.ds-nav-link:hover::after{transform:scaleX(1)}.ds-nav-link--active{color:var(--color-red,#c4322b)}.ds-nav-link--active::after{transform:scaleX(1)}.ds-nav-donate{margin-left:auto;display:flex;align-items:center;padding:0 1.75rem;background:var(--color-red,#c4322b);color:var(--color-paper,#f7f6f2);border-left:1px solid color-mix(in srgb,#222 28%,transparent);font-family:\"League Spartan\",\"Arial Black\",sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.03em;text-transform:uppercase;text-decoration:none;transition:background-color .2s}.ds-nav-donate:hover{background:var(--color-red-deep,#96231e)}"
+    },
+    {
+      "name": "Ruled Index Row",
+      "kind": "card",
+      "description": "The system's replacement for a card grid: a hairline-divided row with icon, title, description and action aligned down the list.",
+      "html": "<ul class=\"ds-index\"><li class=\"ds-index-row\"><a class=\"ds-index-link\" href=\"#\"><svg class=\"ds-index-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 3h4v3h-4z\"/><path d=\"M9 6h6v4a3 3 0 0 1-.6 1.8L13 14v6a1 1 0 0 1-1 1 1 1 0 0 1-1-1v-6l-1.4-2.2A3 3 0 0 1 9 10z\"/><path d=\"M12 1v2\"/></svg><h3 class=\"ds-index-title\">Free Narcan</h3><p class=\"ds-index-body\">Nasal naloxone kits at no cost, with no ID and no questions asked.</p><span class=\"ds-index-cta\">Request a kit<svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15\"/><path d=\"m13 6 6 6-6 6\"/></svg></span></a></li></ul>",
+      "css": ".ds-index{list-style:none;margin:0;padding:0;border-top:1px solid color-mix(in srgb,#222 28%,transparent);font-family:Archivo,system-ui,sans-serif}.ds-index-row{border-bottom:1px solid color-mix(in srgb,#222 28%,transparent)}.ds-index-link{display:grid;grid-template-columns:auto 16rem 1fr auto;align-items:start;column-gap:2rem;row-gap:1rem;padding:3rem 0;color:inherit;text-decoration:none}.ds-index-icon{width:2rem;height:2rem;color:var(--color-red,#c4322b)}.ds-index-title{margin:0;font-family:\"League Spartan\",\"Arial Black\",sans-serif;font-weight:700;font-size:2.1rem;line-height:.92;letter-spacing:-.03em;text-transform:uppercase}.ds-index-body{margin:0;max-width:68ch;font-size:1rem;line-height:1.625;color:var(--color-ink-soft,#4a4a48)}.ds-index-cta{display:flex;align-items:center;gap:.5rem;padding-top:.5rem;color:var(--color-red,#c4322b);font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase}.ds-index-cta .ds-arrow{width:1.15rem;height:1.15rem;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-index-link:hover .ds-arrow{transform:translateX(6px)}.ds-index-link:focus-visible{outline:2px solid var(--color-red,#c4322b);outline-offset:3px}"
+    },
+    {
+      "name": "Red Field with Watermark",
+      "kind": "custom",
+      "description": "The page opener: an opaque red ground with one rotated, masked watermark plane beneath display type and paper-on-red secondary copy.",
+      "html": "<section class=\"ds-field-red\"><div class=\"ds-wm\" aria-hidden=\"true\"><div class=\"ds-wm-plane\"><div class=\"ds-wm-row\"><span>Prevent Overdose</span><span>Prevent Overdose</span><span>Prevent Overdose</span></div><div class=\"ds-wm-row ds-wm-row--off\"><span>Prevent Overdose</span><span>Prevent Overdose</span><span>Prevent Overdose</span></div><div class=\"ds-wm-row\"><span>Prevent Overdose</span><span>Prevent Overdose</span><span>Prevent Overdose</span></div></div></div><div class=\"ds-field-inner\"><h1 class=\"ds-field-title\">Get free Narcan</h1><p class=\"ds-field-lede\">No cost. No ID. No questions.</p></div></section>",
+      "css": ".ds-field-red{position:relative;isolation:isolate;overflow:hidden;background:var(--color-red,#c4322b);color:var(--color-paper,#f7f6f2);border-bottom:1px solid color-mix(in srgb,#222 28%,transparent);font-family:Archivo,system-ui,sans-serif}.ds-wm{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.075;color:var(--color-paper,#f7f6f2);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 58%,transparent 92%);mask-image:linear-gradient(to bottom,transparent 0%,#000 16%,#000 58%,transparent 92%)}.ds-wm-plane{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;transform:translate(-50%,-50%) rotate(-8deg);transform-origin:center}.ds-wm-row{display:flex;gap:2.5rem;white-space:nowrap;font-family:\"League Spartan\",\"Arial Black\",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.03em;line-height:1.5;font-size:clamp(2.25rem,4.4vw,4rem);color:currentColor}.ds-wm-row--off{margin-left:-6rem}.ds-field-inner{position:relative;padding:5rem 1.25rem}.ds-field-title{margin:0;max-width:18ch;font-family:\"League Spartan\",\"Arial Black\",sans-serif;font-weight:800;font-size:clamp(2.6rem,7vw,5.5rem);line-height:.86;letter-spacing:-.04em;text-transform:uppercase;text-wrap:balance}.ds-field-lede{margin:2rem 0 0;max-width:68ch;font-size:1.0625rem;line-height:1.625;color:var(--color-paper-on-red,#fbf0ef)}"
+    },
+    {
+      "name": "Triage Door",
+      "kind": "custom",
+      "refersTo": "door-red",
+      "description": "A full-height panel that is itself the action: drawn hairline, display label in caps, one line of consequence, label+arrow affordance. No button inside.",
+      "html": "<a class=\"ds-door\" href=\"#\"><span class=\"ds-door-rule\"></span><span class=\"ds-door-label\">I need Narcan</span><span class=\"ds-door-consequence\">Free kits, no cost and no questions. Plus how to use one when it matters.</span><span class=\"ds-door-cta\">Enter<svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15\"/><path d=\"m13 6 6 6-6 6\"/></svg></span></a>",
+      "css": ".ds-door{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:1.25rem;min-height:23rem;padding:3.5rem 2rem;background:var(--color-red,#c4322b);color:var(--color-paper,#f7f6f2);text-decoration:none;overflow:hidden;font-family:Archivo,system-ui,sans-serif;transition:background-color .7s cubic-bezier(.16,1,.3,1)}.ds-door-rule{display:block;height:1px;width:100%;background:color-mix(in srgb,#fff 26%,transparent)}.ds-door-label{font-family:\"League Spartan\",\"Arial Black\",sans-serif;font-weight:800;font-size:clamp(2.4rem,5.6vw,4.5rem);line-height:.86;letter-spacing:-.04em;text-transform:uppercase;text-wrap:balance}.ds-door-consequence{max-width:52ch;font-size:.9375rem;line-height:1.625;color:var(--color-paper-on-red,#fbf0ef)}.ds-door-cta{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase}.ds-door-cta .ds-arrow{width:1.15rem;height:1.15rem;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-door:hover .ds-arrow,.ds-door:focus-visible .ds-arrow{transform:translateX(6px)}.ds-door:focus-visible{outline:2px solid var(--color-paper,#f7f6f2);outline-offset:-3px}"
+    },
+    {
+      "name": "Empty State Marker",
+      "kind": "chip",
+      "description": "Dashed slate outline that labels an honest absence. Dashed means nothing is here yet; it is never decorative.",
+      "html": "<span class=\"ds-empty\">Not yet reported</span>",
+      "css": ".ds-empty{display:inline-block;border:1px dashed color-mix(in srgb,#575756 50%,transparent);border-radius:0;padding:.25rem .75rem;font-family:Archivo,system-ui,sans-serif;font-size:.8125rem;color:var(--color-slate,#575756)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Public Notice",
+    "overview": "This is the visual language of something posted where people will actually see it - a civic bill, a field sign, a warning that must read from across a room and still be dignified up close. Brand red is not an accent here; it is the ground. Whole viewport-height fields fill with #C4322B, carry their own tiled wordmark texture, and hold display type at scale. Between the red fields, paper and a slightly deeper paper carry the reading. Nothing floats: there are no cards, no drop shadows, no rounded containers. Structure comes from hairline rules and from panels that butt directly against one another.\n\nThe density is editorial rather than app-like. Content lists are ruled indexes with a top border and a border under each row, not grids of boxes. Sections are separated by a single hairline the full width of the page. Where the incumbent Wix site used stock photography, this build uses no photography at all: the texture that fills empty space is the wordmark itself, rotated and tiled, blended into whatever ground it sits over. The one authored motion moment is the homepage fork rising into place; everything else is a state change under 700ms.\n\nLegibility is the governing constraint, not a finishing pass. The palette was inherited from the incumbent brand and it is unforgiving: red at luminance 0.14 and blush at high lightness both fail in obvious ways, so the system encodes the exact tokens and prohibitions that keep AA intact. Hierarchy is built from hue, size, weight and position - never from transparency.",
+    "keyCharacteristics": [
+      "Committed red: full-height fields, not accents",
+      "League Spartan set very large, uppercase, tight (-0.04em, line-height 0.86)",
+      "Zero shadows; zero corner radius on every surface and control",
+      "Hairline rules (--rule, --rule-strong, --rule-on-red) as the only divider",
+      "A single continuous watermark plane per surface, blended into opaque grounds",
+      "Ruled indexes instead of card grids",
+      "Every numeral runs tabular lining figures"
+    ],
+    "rules": [
+      {
+        "name": "The Fill-Only Blush Rule",
+        "body": "Blush is a fill and never a text color. It does not clear body-copy contrast on paper, and no size or weight rescues it. If blush needs to communicate, it does so as an area.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Dimming-On-Red Rule",
+        "body": "Brand red sits at relative luminance 0.14, so any text on it needs luminance >= 0.81 to clear 4.5:1 - which leaves no headroom at all. Tailwind v4 opacity modifiers compile to oklab() and composite darker than naive sRGB alpha: text-paper/85 on red measures ~4.0:1 and fails. Secondary copy on red uses --color-paper-on-red, which reads warmer rather than fainter and measures 4.9:1. On a red field, hierarchy comes from hue, size and weight - never from dimming.",
+        "section": "colors"
+      },
+      {
+        "name": "The Red-Deep-On-Blush Rule",
+        "body": "Brand red on blush measures 3.74:1 and fails for the 11px label. Small type over blush uses red-deep (5.6:1), which holds the brand and clears AA.",
+        "section": "colors"
+      },
+      {
+        "name": "The Committed Field Rule",
+        "body": "Red arrives as a whole field with its own watermark and its own inverted rule and focus colors, or it arrives as a small mark (icon, link, active underline, button). There is no middle register: no red-tinted panels, no red washes behind paper copy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Caps Display Rule",
+        "body": "Display and title type is always uppercase League Spartan with negative tracking. Sentence-case display type does not exist in this system.",
+        "section": "typography"
+      },
+      {
+        "name": "The Measure Rule",
+        "body": "Prose is capped: 68ch for running body, 52ch for short supporting copy beside a heading. Type never runs the full 90rem container.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Any numeral a reader might compare - a count, a year, a percentage, a phone number - carries tabular lining figures, so columns of digits align and a hovered value does not shift its neighbours.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label-Is-An-Action Rule",
+        "body": "The uppercase 11px label marks something you can do or a data affordance. It is not a kicker: it never sits above a heading to introduce it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Ground Rule",
+        "body": "Surfaces are opaque and coplanar. Separation is a color change or a hairline; never a shadow, never a blur, never a border-radius standing in for a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Single Plane Rule",
+        "body": "A surface gets one watermark plane, not one per panel. In the homepage fork, a single rotated plane is positioned over the three opaque door grounds and blended into them with mix-blend-soft-light at 55% opacity, so each ground tints the same texture differently. Per-panel planes each centered their own tiling and the pattern visibly restarted at every seam. The shared plane also holds still while the panels resize, which is where the differential motion between texture and panel comes from.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Font-Size Watermark Rule",
+        "body": "Watermark rows size via font-size (clamp(2.25rem, 4.4vw, 4rem)) with line-height 1.5 clearing the cap height - never via transform: scale(). Scaling a row past its own line box makes adjacent rows overlap and merge into nonsense letterforms.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Masked Texture Rule",
+        "body": "Every watermark carries a vertical linear-gradient mask (transparent to opaque 16%-58% to transparent 92%) so the texture is absent behind the copy at the foot of the field. Opacity is set by the consumer: ~0.075-0.08 over red, ~0.05-0.06 over ink, 0.55 with soft-light blending over the mixed fork.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use --color-paper-on-red (#FBF0EF) for secondary copy on any red field. It is the only sanctioned secondary text color there.",
+      "Do build hierarchy on red from hue, size, weight and position.",
+      "Do use blush as an area fill only - door ground, selected row, hover state.",
+      "Do use red-deep for small type over blush.",
+      "Do give a surface one shared watermark plane blended over its opaque grounds with mix-blend-soft-light, so the tiling never restarts at a seam.",
+      "Do size watermark rows with font-size, with line-height 1.5 clearing the cap height.",
+      "Do divide with 1px hairlines from the rule tokens, and invert to --rule-on-red and a paper focus ring inside .on-red.",
+      "Do set every comparable numeral in tabular lining figures.",
+      "Do cap prose at 68ch, or 52ch for short supporting copy.",
+      "Do mark honest empty states with a dashed 1px slate border rather than hiding them.",
+      "Do pair every call to action with the drawn arrow that slides on hover and focus."
+    ],
+    "donts": [
+      "Don't dim text on red with an opacity modifier. Tailwind v4 compiles these to oklab() and composites darker than sRGB alpha; text-paper/85 on brand red measures ~4.0:1 and fails AA.",
+      "Don't set body copy, labels, or any text in blush.",
+      "Don't use brand red for small text on blush (3.74:1).",
+      "Don't add a box-shadow anywhere. Depth is a color change or a hairline.",
+      "Don't round a panel, button, input, or drawer. 0px is the radius.",
+      "Don't scale a watermark row with transform: scale(); rows overlap into nonsense letterforms.",
+      "Don't give each panel of a multi-panel field its own watermark plane.",
+      "Don't put an uppercase label above a heading as a kicker or eyebrow. Labels mark actions and data.",
+      "Don't convert a ruled index into a grid of shadowed, rounded cards.",
+      "Don't introduce photography or stock imagery; the watermark is this system's texture.",
+      "Don't carry the fork's three-panel composition onto other surfaces. Page openers use the red PageHeader field."
+    ]
+  }
+}
