@@ -83,6 +83,13 @@ export const Users = ({ className, strokeWidth = 1.6 }: IconProps) => (
   </svg>
 );
 
+export const User = ({ className, strokeWidth = 1.6 }: IconProps) => (
+  <svg {...base(className)} strokeWidth={strokeWidth}>
+    <circle cx="12" cy="8" r="3.6" />
+    <path d="M5 20a7 7 0 0 1 14 0" />
+  </svg>
+);
+
 export const Shield = ({ className, strokeWidth = 1.6 }: IconProps) => (
   <svg {...base(className)} strokeWidth={strokeWidth}>
     <path d="M12 21c4.5-1.9 7-5.4 7-9.6V5.6L12 3 5 5.6v5.8c0 4.2 2.5 7.7 7 9.6z" />

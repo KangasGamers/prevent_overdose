@@ -105,9 +105,9 @@ export default function HomePage() {
                 Icon: Users,
                 title: "Training",
                 body:
-                  "Free sessions for schools, workplaces, and community groups in the Farmington Valley. Recognize an overdose, give a dose, keep someone breathing until help arrives.",
-                href: "/events",
-                cta: "See upcoming sessions",
+                  "A free online certification course, and in-person sessions for schools, workplaces, and community groups. Recognize an overdose, give a dose, keep someone breathing until help arrives.",
+                href: "/training",
+                cta: "Get certified",
               },
               {
                 Icon: Shield,

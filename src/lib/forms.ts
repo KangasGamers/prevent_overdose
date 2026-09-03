@@ -37,6 +37,13 @@ export const formSchemas = {
     event: z.string().trim().max(200),
     website: honeypot,
   }),
+  "training-cert": z.object({
+    name: z.string().trim().min(1).max(200),
+    email: z.email().max(200),
+    videoUrl: z.url().max(500),
+    quizScore: z.string().trim().max(20).optional(),
+    website: honeypot,
+  }),
 } as const;
 
 export type FormKind = keyof typeof formSchemas;
@@ -47,4 +54,5 @@ export const formSubjects: Record<FormKind, string> = {
   contact: "Contact message",
   newsletter: "Newsletter signup",
   "event-notify": "Event notification signup",
+  "training-cert": "Certification video — review needed",
 };

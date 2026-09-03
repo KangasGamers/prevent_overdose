@@ -42,6 +42,7 @@ export const org = {
 
 export const nav = [
   { label: "Get Narcan", href: "/get-narcan" },
+  { label: "Training", href: "/training" },
   { label: "About", href: "/about" },
   { label: "Board", href: "/board" },
   { label: "Volunteer", href: "/volunteer" },

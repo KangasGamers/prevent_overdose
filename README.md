@@ -76,6 +76,25 @@ editing:
 Text contrast is verified at zero failures across all routes. The design decisions and
 the backend plan are documented in `docs/superpowers/specs/` and `.impeccable/`.
 
+## Training & certification (Phase 1)
+
+`/training` is a self-serve Narcan course: sequential video modules (`/training/course`),
+a quiz that unlocks only when every module is complete (`/training/quiz`), a
+demonstration-video submission (`/training/submit`), and a printable certificate
+template (`/training/certificate?name=…&issued=…&id=…`).
+
+- **Content is a draft.** Module titles/summaries and every quiz question in
+  `src/lib/training.ts` are placeholders — rewrite them, and paste each module's
+  Mux **playback ID** (public policy) into that file after uploading the videos.
+- **No-skip enforcement** is client-side (`course-player.tsx`): forward seeks snap
+  back, a module completes at 95% watched. Good-faith, not tamper-proof.
+- **Progress is per-browser** (`localStorage`, `src/lib/training-progress.ts`) — no
+  accounts this phase, so it's resettable.
+- On a quiz pass the learner submits a video link; that emails the org (form kind
+  `training-cert`). The org reviews and issues the certificate by hand via the
+  `/training/certificate` URL. Phase 2 (accounts, DB, uploads, auto-issued
+  verifiable certificates) is not built.
+
 ## Forms
 
 `get-narcan`, `volunteer`, `contact`, the footer newsletter, and event-notify all
@@ -87,7 +106,7 @@ as reply-to. Set `RESEND_API_KEY`, `FORMS_TO_EMAIL`, and `FORMS_FROM_EMAIL` (see
 
 ## Not built (deliberately out of scope)
 
-Narcan request fulfillment, a submissions database and admin console, newsletter
-list management, volunteer/training persistence, and a CMS. The architecture for
-those is specified in
+Narcan request fulfillment, a submissions database and admin console, learner
+accounts / server-side course progress / verifiable certificates, newsletter list
+management, and a CMS. The architecture for those is specified in
 `docs/superpowers/specs/2026-09-02-preventoverdose-redesign-design.md`.

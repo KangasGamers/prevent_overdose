@@ -88,6 +88,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Printing any page drops the site chrome; the certificate page relies on it. */
+@media print {
+  body > header,
+  body > footer,
+  body > a[href="#main"] {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
