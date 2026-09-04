@@ -21,6 +21,8 @@ type Seat = {
   photo?: string;
   /** Vertical focal point for the headshot crop, e.g. "center" or "35%". Defaults to the top. */
   photoPosition?: string;
+  /** Extra crop-in on the headshot. 1 = as-is, 1.25 = 25% zoomed in. */
+  photoScale?: number;
 };
 
 export function BoardSeats() {
@@ -78,7 +80,7 @@ export function BoardSeats() {
         const inner = (
           <>
             <span
-              className="door-rise relative z-20 block w-full max-w-[12rem]"
+              className="door-rise relative z-20 block w-full max-w-[12rem] overflow-hidden"
               style={{ animationDelay: reduced ? "0ms" : `${i * 90}ms` }}
             >
               {seat.photo ? (
@@ -86,8 +88,11 @@ export function BoardSeats() {
                 <img
                   src={seat.photo}
                   alt={seat.name ?? seat.role}
-                  style={{ objectPosition: `50% ${seat.photoPosition ?? "0%"}` }}
-                  className={`aspect-square w-full object-cover grayscale transition-[opacity,filter] duration-500 group-hover:grayscale-0 group-focus-visible:grayscale-0 ${
+                  style={{
+                    objectPosition: `50% ${seat.photoPosition ?? "0%"}`,
+                    transform: seat.photoScale ? `scale(${seat.photoScale})` : undefined,
+                  }}
+                  className={`aspect-square w-full origin-top object-cover grayscale transition-[opacity,filter] duration-500 group-hover:grayscale-0 group-focus-visible:grayscale-0 ${
                     dimmed ? "opacity-80" : "opacity-100"
                   }`}
                 />
