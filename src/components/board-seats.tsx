@@ -87,7 +87,7 @@ export function BoardSeats() {
                   src={seat.photo}
                   alt={seat.name ?? seat.role}
                   style={{ objectPosition: `50% ${seat.photoPosition ?? "0%"}` }}
-                  className={`aspect-square w-full object-cover grayscale transition-opacity duration-500 ${
+                  className={`aspect-square w-full object-cover grayscale transition-[opacity,filter] duration-500 group-hover:grayscale-0 group-focus-visible:grayscale-0 ${
                     dimmed ? "opacity-80" : "opacity-100"
                   }`}
                 />
