@@ -2,20 +2,34 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { BoardSeats } from "@/components/board-seats";
 import { ArrowRight, Mail } from "@/components/icons";
-import { boardApplication, org } from "@/lib/site";
+import { boardApplication, boardRoles, org } from "@/lib/site";
+
+const WORDS = ["no", "one", "two", "three", "four", "five", "six"];
+const openSeats = boardRoles.filter((r) => !("name" in r)).length;
+const openWord = WORDS[openSeats] ?? String(openSeats);
+const seatsTitle =
+  openSeats === 0
+    ? "Our board"
+    : `${openWord[0].toUpperCase()}${openWord.slice(1)} open ${
+        openSeats === 1 ? "seat" : "seats"
+      }`;
 
 export const metadata: Metadata = {
   title: "Board of Directors",
   description:
-    "Five board seats are open at PreventOverdose. Here is what each one is responsible for.",
+    "The PreventOverdose board — who holds each seat, and what the open ones are responsible for.",
 };
 
 export default function BoardPage() {
   return (
     <>
       <PageHeader
-        title="Five open seats"
-        lede="We are a new organization and our board is not yet formed. Rather than show you five empty photographs, here is exactly what each seat is responsible for — and how to take one."
+        title={seatsTitle}
+        lede={
+          openSeats === 0
+            ? "Meet the people running PreventOverdose, and what each seat is responsible for."
+            : "Our board is taking shape. Here is who holds each seat, what the open ones are responsible for, and how to take one."
+        }
       />
 
       <BoardSeats />

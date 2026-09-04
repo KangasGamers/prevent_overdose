@@ -51,7 +51,10 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-/** The five board roles are real and really open. The people are not yet named. */
+/**
+ * The board roles. A seat with a `name`/`photo` is filled; the rest are open and
+ * render as headshot placeholders.
+ */
 export const boardRoles = [
   {
     role: "Executive Director",
@@ -60,6 +63,8 @@ export const boardRoles = [
   },
   {
     role: "Vice President",
+    name: "Tanmay Tarigonda",
+    photo: "/board/vice-president.jpg",
     remit:
       "Deputizes for the director, chairs program review, and leads the training curriculum.",
   },

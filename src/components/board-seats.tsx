@@ -46,31 +46,30 @@ export function BoardSeats() {
     >
       {(boardRoles as readonly Seat[]).map((seat, i) => {
         const id = seat.role;
-        const isActive = active === id;
-        const dimmed = active !== null && !isActive;
+        const dimmed = active !== null && active !== id;
+        const filled = Boolean(seat.name);
 
-        return (
-          <a
-            key={id}
-            href="#apply"
-            onMouseEnter={() => setActive(id)}
-            onFocus={() => setActive(id)}
-            onBlur={() => setActive(null)}
-            style={{
-              flexGrow: weightFor(id),
-              flexBasis: 0,
-              transitionDuration: reduced ? "0ms" : "600ms",
-            }}
-            className={`
-              group relative flex min-h-[24rem] flex-col gap-7 overflow-hidden px-6 pb-10 pt-10
-              outline-offset-[-3px] transition-[flex-grow,background-color] ease-[var(--ease-out-expo)]
-              md:min-h-0 md:px-8
-              ${dimmed ? "bg-paper-deep" : "bg-paper"}
-              ${i > 0 ? "border-t md:border-l md:border-t-0" : ""}
-              border-[var(--rule-strong)]
-            `}
-          >
-            {/* Headshot placeholder — dashed, because the seat is open. */}
+        const handlers = {
+          onMouseEnter: () => setActive(id),
+          onFocus: () => setActive(id),
+          onBlur: () => setActive(null),
+        };
+        const style = {
+          flexGrow: weightFor(id),
+          flexBasis: 0,
+          transitionDuration: reduced ? "0ms" : "600ms",
+        };
+        const className = `
+          group relative flex min-h-[24rem] flex-col gap-7 overflow-hidden px-6 pb-10 pt-10
+          outline-offset-[-3px] transition-[flex-grow,background-color] ease-[var(--ease-out-expo)]
+          md:min-h-0 md:px-8
+          ${dimmed ? "bg-paper-deep" : "bg-paper"}
+          ${i > 0 ? "border-t md:border-l md:border-t-0" : ""}
+          border-[var(--rule-strong)]
+        `;
+
+        const inner = (
+          <>
             <span
               className="door-rise relative z-20 block w-full max-w-[12rem]"
               style={{ animationDelay: reduced ? "0ms" : `${i * 90}ms` }}
@@ -80,7 +79,9 @@ export function BoardSeats() {
                 <img
                   src={seat.photo}
                   alt={seat.name ?? seat.role}
-                  className="aspect-square w-full object-cover grayscale"
+                  className={`aspect-square w-full object-cover object-top grayscale transition-opacity duration-500 ${
+                    dimmed ? "opacity-80" : "opacity-100"
+                  }`}
                 />
               ) : (
                 <span
@@ -96,7 +97,6 @@ export function BoardSeats() {
               )}
             </span>
 
-            {/* Role, remit, affordance */}
             <span className="relative z-20 flex flex-1 flex-col gap-4">
               <span
                 aria-hidden
@@ -120,17 +120,40 @@ export function BoardSeats() {
                 {seat.remit}
               </span>
 
-              <span className="mt-auto flex items-center gap-2 pt-4 text-red">
-                <span className="label">Apply for this seat</span>
-                <ArrowRight
-                  className="
-                    h-[1.15rem] w-[1.15rem] transition-transform duration-500
-                    ease-[var(--ease-out-expo)] group-hover:translate-x-1.5
-                    group-focus-visible:translate-x-1.5
-                  "
-                />
-              </span>
+              {filled ? (
+                <span className="mt-auto pt-4">
+                  <span className="label text-slate">Board member</span>
+                </span>
+              ) : (
+                <span className="mt-auto flex items-center gap-2 pt-4 text-red">
+                  <span className="label">Apply for this seat</span>
+                  <ArrowRight
+                    className="
+                      h-[1.15rem] w-[1.15rem] transition-transform duration-500
+                      ease-[var(--ease-out-expo)] group-hover:translate-x-1.5
+                      group-focus-visible:translate-x-1.5
+                    "
+                  />
+                </span>
+              )}
             </span>
+          </>
+        );
+
+        return filled ? (
+          <div
+            key={id}
+            tabIndex={0}
+            aria-label={`${seat.name}, ${seat.role}`}
+            {...handlers}
+            style={style}
+            className={className}
+          >
+            {inner}
+          </div>
+        ) : (
+          <a key={id} href="#apply" {...handlers} style={style} className={className}>
+            {inner}
           </a>
         );
       })}
