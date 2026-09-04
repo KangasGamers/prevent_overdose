@@ -14,7 +14,14 @@ import { boardRoles } from "@/lib/site";
  * When a seat is filled, give its `boardRoles` entry a `name` and `photo` and
  * the placeholder swaps for the real image.
  */
-type Seat = { role: string; remit: string; name?: string; photo?: string };
+type Seat = {
+  role: string;
+  remit: string;
+  name?: string;
+  photo?: string;
+  /** Vertical focal point for the headshot crop, e.g. "center" or "35%". Defaults to the top. */
+  photoPosition?: string;
+};
 
 export function BoardSeats() {
   const [active, setActive] = useState<string | null>(null);
@@ -79,7 +86,8 @@ export function BoardSeats() {
                 <img
                   src={seat.photo}
                   alt={seat.name ?? seat.role}
-                  className={`aspect-square w-full object-cover object-top grayscale transition-opacity duration-500 ${
+                  style={{ objectPosition: `50% ${seat.photoPosition ?? "0%"}` }}
+                  className={`aspect-square w-full object-cover grayscale transition-opacity duration-500 ${
                     dimmed ? "opacity-80" : "opacity-100"
                   }`}
                 />

@@ -84,6 +84,7 @@ export const boardRoles = [
     role: "Chief Technical Officer",
     name: "Ali Ayaan Rizvi",
     photo: "/board/chief-technical-officer.jpg",
+    photoPosition: "25%",
     remit:
       "Owns the website, data systems, and technical infrastructure the organization runs on.",
   },
