@@ -72,7 +72,6 @@ export const boardRoles = [
     role: "Secretary",
     name: "Krithika Gangisetti",
     photo: "/board/secretary.jpg",
-    photoScale: 1.4,
     remit:
       "Keeps the record: minutes, filings, governance calendar, and the organization's compliance obligations.",
   },
