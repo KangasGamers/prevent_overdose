@@ -29,16 +29,16 @@ error; everything else works.
 - Mission, vision, and values statements, verbatim.
 - Contact details, address, EIN, 501(c)(3) status.
 - The four article titles and the one real event (whose date is genuinely TBD).
-- The five board roles (Vice President, Director of Finance, and Chief Technical
-  Officer are seated; two seats remain open).
+- The five board roles (Vice President, Director of Finance, Chief Technical
+  Officer, and Secretary are seated; one seat remains open).
 - **All statistics.** US and Connecticut overdose figures come from CDC/NCHS and the
   CT Office of the Chief Medical Examiner, and every one links to its source. No
   figure on this site is invented.
 
 **Placeholder** — visibly marked as such wherever it appears:
 
-- Board member names for the two open roles. Those seats render as headshot
-  placeholders until someone is appointed.
+- The board member name for the one open role. That seat renders as a headshot
+  placeholder until someone is appointed.
 - The organization's own impact numbers (kits distributed, trainings held). No
   verified figure exists, so the site says "Not yet reported" rather than showing a zero.
 - Article bodies below the lede.
