@@ -29,7 +29,7 @@ error; everything else works.
 - Mission, vision, and values statements, verbatim.
 - Contact details, address, EIN, 501(c)(3) status.
 - The four article titles and the one real event (whose date is genuinely TBD).
-- The five board roles (Vice President and Chief Financial Officer are seated; three
+- The five board roles (Vice President and Director of Finance are seated; three
   seats remain open).
 - **All statistics.** US and Connecticut overdose figures come from CDC/NCHS and the
   CT Office of the Chief Medical Examiner, and every one links to its source. No
