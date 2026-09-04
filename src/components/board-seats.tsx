@@ -14,14 +14,7 @@ import { boardRoles } from "@/lib/site";
  * When a seat is filled, give its `boardRoles` entry a `name` and `photo` and
  * the placeholder swaps for the real image.
  */
-type Seat = {
-  role: string;
-  remit: string;
-  name?: string;
-  photo?: string;
-  /** Extra crop-in for a headshot that sits too wide in frame. 1 = as-is. */
-  photoScale?: number;
-};
+type Seat = { role: string; remit: string; name?: string; photo?: string };
 
 export function BoardSeats() {
   const [active, setActive] = useState<string | null>(null);
@@ -78,7 +71,7 @@ export function BoardSeats() {
         const inner = (
           <>
             <span
-              className="door-rise relative z-20 block w-full max-w-[12rem] overflow-hidden"
+              className="door-rise relative z-20 block w-full max-w-[12rem]"
               style={{ animationDelay: reduced ? "0ms" : `${i * 90}ms` }}
             >
               {seat.photo ? (
@@ -86,12 +79,7 @@ export function BoardSeats() {
                 <img
                   src={seat.photo}
                   alt={seat.name ?? seat.role}
-                  style={
-                    seat.photoScale
-                      ? { transform: `scale(${seat.photoScale})` }
-                      : undefined
-                  }
-                  className={`aspect-square w-full origin-top object-cover object-top grayscale transition-opacity duration-500 ${
+                  className={`aspect-square w-full object-cover object-top grayscale transition-opacity duration-500 ${
                     dimmed ? "opacity-80" : "opacity-100"
                   }`}
                 />

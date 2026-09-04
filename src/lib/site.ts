@@ -77,7 +77,6 @@ export const boardRoles = [
     role: "Chief Financial Officer",
     name: "Pranav Anandavel",
     photo: "/board/chief-financial-officer.png",
-    photoScale: 1.28,
     remit:
       "Owns the books, the annual filing, and the public reporting of how every donated dollar is spent.",
   },
