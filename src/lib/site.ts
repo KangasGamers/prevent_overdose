@@ -58,6 +58,8 @@ export const nav = [
 export const boardRoles = [
   {
     role: "Executive Director",
+    name: "Aaryan Patel",
+    photo: "/board/executive-director.jpg",
     remit:
       "Sets program direction, owns partnerships with health departments and schools, and represents the organization publicly.",
   },

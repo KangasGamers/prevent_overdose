@@ -67,15 +67,12 @@ evaluators it is trying to impress.
   Distribution as a Vital Strategy in Addressing Opioid Overdoses", "Understanding the
   Rising Trends of Opioid Overdose Deaths in America".
 - One real event: Launch Party, Avon CT, date and time genuinely TBD.
-- Five board roles: Executive Director, Vice President (Tanmay Tarigonda),
-  Secretary (Krithika Gangisetti), Director of Finance (Pranav Anandavel),
-  Chief Technical Officer (Ali Ayaan Rizvi). One seat remains open. Board
-  recruitment asks for a CV plus a 300–500 word statement.
+- Five board roles, all seated: Executive Director (Aaryan Patel), Vice President
+  (Tanmay Tarigonda), Secretary (Krithika Gangisetti), Director of Finance
+  (Pranav Anandavel), Chief Technical Officer (Ali Ayaan Rizvi).
 
 **Explicitly undecided / absent — must not be fabricated:**
 
-- The board member name for the one open role (Executive Director) — it renders
-  as a headshot placeholder.
 - The organization's own program numbers: kits distributed, trainings held, reversals
   reported. No verified figure exists.
 - Photography. The current site uses unrelated Wix stock imagery (a pottery workshop,
