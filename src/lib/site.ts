@@ -74,7 +74,8 @@ export const boardRoles = [
       "Keeps the record: minutes, filings, governance calendar, and the organization's compliance obligations.",
   },
   {
-    role: "Treasurer",
+    role: "Chief Financial Officer",
+    name: "Pranav Anandavel",
     remit:
       "Owns the books, the annual filing, and the public reporting of how every donated dollar is spent.",
   },
