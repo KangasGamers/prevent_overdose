@@ -81,9 +81,11 @@ export const boardRoles = [
       "Owns the books, the annual filing, and the public reporting of how every donated dollar is spent.",
   },
   {
-    role: "Outreach Chair",
+    role: "Chief Technical Officer",
+    name: "Ali Ayaan Rizvi",
+    photo: "/board/chief-technical-officer.jpg",
     remit:
-      "Runs distribution events, recruits volunteers, and maintains relationships with community partners.",
+      "Owns the website, data systems, and technical infrastructure the organization runs on.",
   },
 ] as const;
 

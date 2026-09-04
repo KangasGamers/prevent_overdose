@@ -68,13 +68,14 @@ evaluators it is trying to impress.
   Rising Trends of Opioid Overdose Deaths in America".
 - One real event: Launch Party, Avon CT, date and time genuinely TBD.
 - Five board roles: Executive Director, Vice President (Tanmay Tarigonda), Secretary,
-  Director of Finance (Pranav Anandavel), Outreach Chair. Three seats remain open.
-  Board recruitment asks for a CV plus a 300–500 word statement.
+  Director of Finance (Pranav Anandavel), Chief Technical Officer (Ali Ayaan Rizvi).
+  Two seats remain open. Board recruitment asks for a CV plus a 300–500 word
+  statement.
 
 **Explicitly undecided / absent — must not be fabricated:**
 
-- Board member names for the three open roles (Executive Director, Secretary, Outreach
-  Chair) — these render as headshot placeholders.
+- Board member names for the two open roles (Executive Director, Secretary) — these
+  render as headshot placeholders.
 - The organization's own program numbers: kits distributed, trainings held, reversals
   reported. No verified figure exists.
 - Photography. The current site uses unrelated Wix stock imagery (a pottery workshop,
