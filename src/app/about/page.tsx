@@ -2,8 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ArrowRight } from "@/components/icons";
-import { org } from "@/lib/site";
+import { org, boardRoles } from "@/lib/site";
 import { ctStats, cdcAttribution } from "@/lib/stats";
+
+const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
+const openBoardSeats = boardRoles.filter((r) => !("name" in r)).length;
 
 export const metadata: Metadata = {
   title: "About",
@@ -90,13 +93,21 @@ export default function AboutPage() {
       <section className="bg-red text-paper on-red">
         <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-8 px-5 py-16 lg:px-8 lg:py-20">
           <h2 className="display max-w-[16ch] text-[clamp(1.8rem,4vw,3rem)]">
-            We are recruiting a board
+            {openBoardSeats === 0
+              ? "Meet our board"
+              : "We are recruiting a board"}
           </h2>
           <Link
             href="/board"
             className="group inline-flex items-center gap-2.5 bg-paper px-7 py-4.5 text-ink transition-colors duration-200 hover:bg-blush"
           >
-            <span className="label">Five open seats</span>
+            <span className="label">
+              {openBoardSeats === 0
+                ? "Meet the team"
+                : `${WORDS[openBoardSeats] ?? openBoardSeats} open ${
+                    openBoardSeats === 1 ? "seat" : "seats"
+                  }`}
+            </span>
             <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
           </Link>
         </div>

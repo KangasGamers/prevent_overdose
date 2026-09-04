@@ -44,7 +44,7 @@ const DOORS: Door[] = [
     href: "/about",
     label: "Who we are",
     consequence:
-      "A 501(c)(3) in Avon, Connecticut. Our mission, our filings, our open board seats.",
+      "A 501(c)(3) in Avon, Connecticut. Our mission, our filings, our board.",
     tone: "blush",
     rest: 0.85,
     stacked: "min-h-[13.5rem]",

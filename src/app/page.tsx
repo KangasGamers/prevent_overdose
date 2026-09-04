@@ -4,7 +4,7 @@ import { DonationTracker } from "@/components/donation-tracker";
 import { Watermark } from "@/components/watermark";
 import { TrendChart } from "@/components/trend-chart";
 import { ArrowRight, NasalSpray, Users, Shield, Clock, Pin } from "@/components/icons";
-import { org, articles, events, responseSteps } from "@/lib/site";
+import { org, articles, events, responseSteps, boardRoles } from "@/lib/site";
 import {
   nationalTrend,
   connecticutTrend,
@@ -12,6 +12,15 @@ import {
   cdcAttribution,
   orgMetrics,
 } from "@/lib/stats";
+
+const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
+const openBoardSeats = boardRoles.filter((r) => !("name" in r)).length;
+const boardSeatsLabel =
+  openBoardSeats === 0
+    ? "Meet our board"
+    : `${WORDS[openBoardSeats] ?? openBoardSeats} board ${
+        openBoardSeats === 1 ? "seat is" : "seats are"
+      } open`;
 
 export default function HomePage() {
   return (
@@ -231,7 +240,7 @@ export default function HomePage() {
             href="/board"
             className="group mt-10 inline-flex items-center gap-2.5 text-red"
           >
-            <span className="label">Five board seats are open</span>
+            <span className="label">{boardSeatsLabel}</span>
             <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
           </Link>
         </div>
