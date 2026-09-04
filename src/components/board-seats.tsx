@@ -60,7 +60,7 @@ export function BoardSeats() {
           transitionDuration: reduced ? "0ms" : "600ms",
         };
         const className = `
-          group relative flex min-h-[24rem] flex-col gap-7 overflow-hidden px-6 pb-10 pt-10
+          group relative flex min-h-[24rem] min-w-0 flex-col gap-7 overflow-hidden px-6 pb-10 pt-10
           outline-offset-[-3px] transition-[flex-grow,background-color] ease-[var(--ease-out-expo)]
           md:min-h-0 md:px-8
           ${dimmed ? "bg-paper-deep" : "bg-paper"}
