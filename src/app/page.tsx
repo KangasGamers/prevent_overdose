@@ -15,12 +15,20 @@ import {
 
 const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
 const openBoardSeats = boardRoles.filter((r) => !("name" in r)).length;
+const filledBoardSeats = boardRoles.length - openBoardSeats;
 const boardSeatsLabel =
   openBoardSeats === 0
     ? "Meet our board"
     : `${WORDS[openBoardSeats] ?? openBoardSeats} board ${
         openBoardSeats === 1 ? "seat is" : "seats are"
       } open`;
+const boardMetric = {
+  id: "board",
+  label: "Board seats filled",
+  known: `${filledBoardSeats} of ${boardRoles.length}`,
+  note: openBoardSeats === 0 ? "Board complete" : "Recruiting now",
+} as const;
+const allMetrics = [...orgMetrics, boardMetric];
 
 export default function HomePage() {
   return (
@@ -207,7 +215,7 @@ export default function HomePage() {
           </div>
 
           <dl className="mt-14 border-t border-[var(--rule-strong)]">
-            {orgMetrics.map((m) => (
+            {allMetrics.map((m) => (
               <div
                 key={m.id}
                 className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2 border-b border-[var(--rule-strong)] py-7"

@@ -80,11 +80,13 @@ export const cdcAttribution = {
 };
 
 /**
- * The organization's own numbers. No verified figure exists for any of these.
+ * The organization's own numbers. No verified figure exists for either of these.
  * They render with explicit placeholder treatment — never as fact.
+ *
+ * Board seat count is *not* here — it's derived live from `boardRoles` in
+ * `src/lib/site.ts` wherever it's shown, so it can't drift out of sync again.
  */
 export const orgMetrics = [
   { id: "kits", label: "Narcan kits distributed", note: "Awaiting first distribution event" },
   { id: "trainings", label: "Trainings delivered", note: "Curriculum in development" },
-  { id: "board", label: "Board seats filled", known: "0 of 5", note: "Recruiting now" },
 ] as const;
