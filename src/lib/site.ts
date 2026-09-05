@@ -60,8 +60,11 @@ export const boardRoles = [
     role: "Executive Director",
     name: "Aaryan Patel",
     photo: "/board/executive-director.jpg",
+    bioPhoto: "/board/executive-director-portrait.jpg",
     remit:
       "Sets program direction, owns partnerships with health departments and schools, and represents the organization publicly.",
+    // Draft — replace with Aaryan's own words.
+    bio: "I started PreventOverdose because too many people in and around Avon don't have easy access to Narcan or to plain, judgment-free education about what an overdose actually looks like and what to do in the first few minutes. This organization exists to close that gap: free naloxone, free training, and a community that treats addiction as a health crisis rather than a moral failing. If we can put a kit in more hands and teach more people to recognize an overdose in time, we save lives that would otherwise be lost to something completely reversible.",
   },
   {
     role: "Vice President",
