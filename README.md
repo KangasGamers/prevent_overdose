@@ -105,25 +105,42 @@ template (`/training/certificate?name=…&issued=…&id=…`).
 `training-cert`, and the two workshop forms (`workshop-register`,
 `workshop-host`) all POST to `src/app/api/submit/route.ts`, which validates
 against the schemas in `src/lib/forms.ts` (shared shape, server is
-authoritative), drops honeypot hits, and emails the submission to
-`FORMS_TO_EMAIL` with the sender's address as reply-to.
+authoritative), drops honeypot hits, writes to Supabase (if configured), and
+emails the submission to `FORMS_TO_EMAIL` with the sender's address as reply-to.
+A submission succeeds if it lands in *either* place.
 
 `src/lib/mailer.ts` picks a backend from the env: **SMTP** (`SMTP_HOST` +
 `SMTP_USER` + `SMTP_PASS` — e.g. a Google Workspace App Password, no DNS setup)
 or **Resend** (`RESEND_API_KEY` — needs a verified domain). SMTP wins if both
-are set. `FORMS_TO_EMAIL` and `FORMS_FROM_EMAIL` are required either way. See
-`.env.example`; set the same vars in the host's environment.
+are set. `FORMS_TO_EMAIL` and `FORMS_FROM_EMAIL` are required either way.
+
+## Database (Supabase — optional)
+
+Set `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` and run `supabase/schema.sql`
+in the Supabase SQL Editor. Then:
+
+- Every submission is stored in `public.submissions` (`kind`, `payload` jsonb,
+  plus `handled` / `notes` columns you toggle in the Supabase Table Editor —
+  that editor *is* the admin view).
+- Workshop registrations also go to `public.workshop_registrations`, with a
+  unique index on `(workshop_slug, lower(email))` — a repeat signup returns
+  `{ ok: true, duplicate: true }` and the form says "you're already on the list".
+- `/workshops` reads `public.workshop_counts` (a view) and shows a live
+  "N registered" per session. The page revalidates every 30s.
+
+Both tables have RLS enabled with no policies: only server code (service-role
+key) can touch them.
 
 ## Workshops
 
 `/workshops` lists in-person Narcan sessions from `workshops` in
 `src/lib/site.ts` (edit that array to schedule real ones — `startsAt: null`
-shows "Date to be announced"; `registerOpen: false` hides the register button).
-Each session has an inline registration form; there's also a "host a workshop"
-request form. No seat-count enforcement — the org confirms spots by email.
-Community events (`events` in the same file) show as a secondary list and keep
-their `/workshops/[slug]` detail pages. The old `/events` URLs 301 to
-`/workshops`.
+shows "Date to be announced"; `registerOpen: false` hides the register button;
+set `startsAtISO` to a real timestamp and "Add to Google Calendar" / ".ics"
+links appear, served by `/api/ical/[slug]`). Each session has an inline
+registration form; there's also a "host a workshop" request form. Community
+events (`events` in the same file) show as a secondary list and keep their
+`/workshops/[slug]` detail pages. The old `/events` URLs 301 to `/workshops`.
 
 ## Not built (deliberately out of scope)
 

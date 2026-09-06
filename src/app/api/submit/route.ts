@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { formSchemas, formSubjects, type FormKind } from "@/lib/forms";
 import { sendFormEmail } from "@/lib/mailer";
+import { getDb } from "@/lib/db";
+import { workshops } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -48,26 +50,70 @@ export async function POST(req: Request) {
 
   const data = parsed.data as Record<string, unknown>;
 
-  // Honeypot: a bot filled the hidden field. Accept silently, send nothing.
+  // Honeypot: a bot filled the hidden field. Accept silently, store nothing.
   if (typeof data.website === "string" && data.website.length > 0) {
     return NextResponse.json({ ok: true });
   }
 
-  const replyTo =
+  const db = getDb();
+  const email =
     typeof data.email === "string"
       ? data.email
       : typeof data.contact === "string" && data.contact.includes("@")
         ? data.contact
         : undefined;
 
-  const subject = `[preventoverdose.co] ${formSubjects[kind]}`;
-  const body = `${formSubjects[kind]}\n\n${fieldLines(data)}\n\n—\nSent from the preventoverdose.co ${kind} form.`;
+  // --- Workshop registration: dedupe up front ------------------------------
+  // `data.workshop` is the slug. Resolve the title for the notification email.
+  let workshopTitle: string | undefined;
+  if (kind === "workshop-register") {
+    const slug = String(data.workshop ?? "");
+    workshopTitle = workshops.find((w) => w.slug === slug)?.title ?? slug;
 
-  const result = await sendFormEmail({ subject, text: body, replyTo });
-  if (!result.ok) {
+    if (db) {
+      const { error } = await db.from("workshop_registrations").insert({
+        workshop_slug: slug,
+        name: String(data.name ?? ""),
+        email: String(data.email ?? ""),
+        attendees: Number(data.attendees ?? 1) || 1,
+        note: data.note ? String(data.note) : null,
+      });
+      if (error) {
+        // 23505 = unique_violation → already registered for this workshop.
+        if (error.code === "23505") {
+          return NextResponse.json({ ok: true, duplicate: true });
+        }
+        console.error("workshop_registrations insert failed:", error);
+      }
+    }
+  }
+
+  // --- Persist the raw submission (best-effort) ---------------------------
+  let stored = false;
+  if (db) {
+    const { error } = await db.from("submissions").insert({
+      kind,
+      email: email ?? null,
+      payload: Object.fromEntries(
+        Object.entries(data).filter(([k]) => k !== "website"),
+      ),
+    });
+    if (error) console.error("submissions insert failed:", error);
+    else stored = true;
+  }
+
+  // --- Notify by email (best-effort) ------------------------------------
+  const label = workshopTitle
+    ? `${formSubjects[kind]} — ${workshopTitle}`
+    : formSubjects[kind];
+  const subject = `[preventoverdose.co] ${label}`;
+  const body = `${label}\n\n${fieldLines(data)}\n\n—\nSent from the preventoverdose.co ${kind} form.`;
+  const mail = await sendFormEmail({ subject, text: body, replyTo: email });
+
+  if (!stored && !mail.ok) {
     return NextResponse.json(
-      { error: "We couldn't send that right now. Please email us directly." },
-      { status: result.reason === "unconfigured" ? 500 : 502 },
+      { error: "We couldn't record that right now. Please email us directly." },
+      { status: mail.reason === "unconfigured" && !db ? 500 : 502 },
     );
   }
 

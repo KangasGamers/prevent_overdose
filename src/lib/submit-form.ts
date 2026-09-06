@@ -1,13 +1,16 @@
 import type { FormKind } from "./forms";
 
+export type SubmitResult = { duplicate: boolean };
+
 /**
- * POST a form to /api/submit. Resolves on success, throws an Error whose
- * message is safe to show the user on failure.
+ * POST a form to /api/submit. Resolves on success (with `{ duplicate }` — true
+ * when the server recognised this as an already-registered entry), throws an
+ * Error whose message is safe to show the user on failure.
  */
 export async function submitForm(
   kind: FormKind,
   data: Record<string, unknown>,
-): Promise<void> {
+): Promise<SubmitResult> {
   let res: Response;
   try {
     res = await fetch("/api/submit", {
@@ -31,4 +34,13 @@ export async function submitForm(
     }
     throw new Error(message);
   }
+
+  let duplicate = false;
+  try {
+    const json = await res.json();
+    duplicate = json?.duplicate === true;
+  } catch {
+    /* keep default */
+  }
+  return { duplicate };
 }

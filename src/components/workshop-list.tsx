@@ -3,17 +3,27 @@
 import { useState } from "react";
 import { ArrowRight, Clock, Pin } from "./icons";
 import { WorkshopRegisterForm } from "./workshop-register-form";
+import { workshopCalendar } from "@/lib/calendar";
 import type { workshops as Workshops } from "@/lib/site";
+import type { WorkshopCount } from "@/lib/db";
 
 type Workshop = (typeof Workshops)[number];
 
-export function WorkshopList({ workshops }: { workshops: Workshop[] }) {
+export function WorkshopList({
+  workshops,
+  counts = {},
+}: {
+  workshops: Workshop[];
+  counts?: Record<string, WorkshopCount>;
+}) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
 
   return (
     <ul className="mt-12 border-t border-[var(--rule-strong)]">
       {workshops.map((w) => {
         const open = openSlug === w.slug;
+        const people = counts[w.slug]?.people ?? 0;
+        const cal = workshopCalendar(w);
         return (
           <li key={w.slug} className="border-b border-[var(--rule-strong)]">
             <div className="grid gap-x-10 gap-y-6 py-10 md:grid-cols-[1fr_auto] md:py-12">
@@ -38,10 +48,31 @@ export function WorkshopList({ workshops }: { workshops: Workshop[] }) {
                     <Pin className="h-[1.15rem] w-[1.15rem] text-red" />
                     <span>{w.locationName}</span>
                   </span>
-                  {w.capacity != null && (
-                    <span className="text-slate">{w.capacity} seats</span>
-                  )}
+                  <span className="text-slate">
+                    {people > 0
+                      ? `${people} registered`
+                      : "Be the first to register"}
+                  </span>
                 </div>
+
+                {cal && (
+                  <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[0.875rem]">
+                    <a
+                      href={cal.google}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-red underline decoration-red/40 transition-colors hover:decoration-red"
+                    >
+                      Add to Google Calendar
+                    </a>
+                    <a
+                      href={cal.icsPath}
+                      className="text-red underline decoration-red/40 transition-colors hover:decoration-red"
+                    >
+                      Download .ics
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div className="md:self-center">
@@ -69,7 +100,7 @@ export function WorkshopList({ workshops }: { workshops: Workshop[] }) {
 
             {open && w.registerOpen && (
               <div className="pb-10 md:max-w-[44rem]">
-                <WorkshopRegisterForm workshop={w.title} />
+                <WorkshopRegisterForm slug={w.slug} title={w.title} />
               </div>
             )}
           </li>

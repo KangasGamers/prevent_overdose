@@ -153,7 +153,11 @@ export const workshops: {
   slug: string;
   title: string;
   city: string;
+  /** Human-readable date shown on the card. null => "Date to be announced". */
   startsAt: string | null;
+  /** Real ISO timestamp (with offset). Set this and "Add to calendar" links appear. */
+  startsAtISO?: string;
+  durationMinutes?: number;
   locationName: string;
   locationAddr: string;
   capacity: number | null;

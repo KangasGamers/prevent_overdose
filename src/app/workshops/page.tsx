@@ -5,6 +5,7 @@ import { ArrowRight, Clock, Pin } from "@/components/icons";
 import { WorkshopList } from "@/components/workshop-list";
 import { WorkshopHostForm } from "@/components/workshop-host-form";
 import { workshops, events } from "@/lib/site";
+import { getWorkshopCounts } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Workshops",
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
     "Register for a free in-person Narcan workshop, or ask us to bring one to your school, workplace, or community group. Everyone who attends leaves with a kit.",
 };
 
-export default function WorkshopsPage() {
+// Registration counts change with each signup — keep the page fresh, cheaply.
+export const revalidate = 30;
+
+export default async function WorkshopsPage() {
+  const counts = await getWorkshopCounts();
   return (
     <>
       <PageHeader
@@ -27,7 +32,7 @@ export default function WorkshopsPage() {
           </h2>
 
           {workshops.length > 0 ? (
-            <WorkshopList workshops={workshops} />
+            <WorkshopList workshops={workshops} counts={counts} />
           ) : (
             <div className="mt-12 border border-dashed border-slate/50 px-8 py-16 text-center">
               <p className="display-tight text-[clamp(1.4rem,2.6vw,1.9rem)] text-ink">

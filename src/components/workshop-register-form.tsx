@@ -11,17 +11,19 @@ import { submitForm } from "@/lib/submit-form";
  * no live seat count. The org confirms a spot and sends the address by reply.
  */
 export function WorkshopRegisterForm({
-  workshop,
+  slug,
+  title,
   onDone,
 }: {
-  workshop: string;
+  slug: string;
+  title: string;
   onDone?: () => void;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [attendees, setAttendees] = useState("1");
   const [note, setNote] = useState("");
-  const [state, setState] = useState<"idle" | "submitting" | "done" | "error">("idle");
+  const [state, setState] = useState<"idle" | "submitting" | "done" | "duplicate" | "error">("idle");
   const [errors, setErrors] = useState<{ name?: string; email?: string; form?: string }>({});
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -35,20 +37,33 @@ export function WorkshopRegisterForm({
     if (Object.keys(next).length) { setState("error"); return; }
     setState("submitting");
     try {
-      await submitForm("workshop-register", {
-        workshop,
+      const { duplicate } = await submitForm("workshop-register", {
+        workshop: slug,
         name: name.trim(),
         email: email.trim(),
         ...(attendees.trim() && attendees.trim() !== "1" ? { attendees: attendees.trim() } : {}),
         ...(note.trim() ? { note: note.trim() } : {}),
         website,
       });
-      setState("done");
+      setState(duplicate ? "duplicate" : "done");
       onDone?.();
     } catch (err) {
       setState("error");
       setErrors({ form: err instanceof Error ? err.message : "Something went wrong." });
     }
+  }
+
+  if (state === "duplicate") {
+    return (
+      <div className="border border-[var(--rule-strong)] bg-paper px-6 py-8">
+        <Check className="h-8 w-8 text-red" />
+        <h4 className="display-tight mt-4 text-[1.3rem]">You&rsquo;re already on the list</h4>
+        <p className="measure-tight mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
+          That email is already registered for {title}. Check your inbox for our
+          confirmation, or email us if you need to change anything.
+        </p>
+      </div>
+    );
   }
 
   if (state === "done") {
@@ -57,7 +72,7 @@ export function WorkshopRegisterForm({
         <Check className="h-8 w-8 text-red" />
         <h4 className="display-tight mt-4 text-[1.3rem]">You&rsquo;re on the list</h4>
         <p className="measure-tight mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
-          We&rsquo;ll email you to confirm your spot for {workshop} and send the
+          We&rsquo;ll email you to confirm your spot for {title} and send the
           exact address. If the session fills, we&rsquo;ll offer you the next one.
         </p>
       </div>
@@ -67,13 +82,13 @@ export function WorkshopRegisterForm({
   return (
     <form onSubmit={onSubmit} noValidate className="relative border border-[var(--rule-strong)] bg-paper px-6 py-7">
       <Honeypot />
-      <p className="label text-slate">Register — {workshop}</p>
+      <p className="label text-slate">Register — {title}</p>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor={`wr-name-${workshop}`} className="label text-slate">Name</label>
+          <label htmlFor={`wr-name-${slug}`} className="label text-slate">Name</label>
           <input
-            id={`wr-name-${workshop}`}
+            id={`wr-name-${slug}`}
             value={name}
             onChange={(e) => { setName(e.target.value); setErrors((x) => ({ ...x, name: undefined })); }}
             disabled={state === "submitting"}
@@ -83,9 +98,9 @@ export function WorkshopRegisterForm({
           {errors.name && <p role="alert" className="mt-2 text-[0.875rem] text-red">{errors.name}</p>}
         </div>
         <div>
-          <label htmlFor={`wr-email-${workshop}`} className="label text-slate">Email</label>
+          <label htmlFor={`wr-email-${slug}`} className="label text-slate">Email</label>
           <input
-            id={`wr-email-${workshop}`}
+            id={`wr-email-${slug}`}
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); setErrors((x) => ({ ...x, email: undefined })); }}
@@ -100,11 +115,11 @@ export function WorkshopRegisterForm({
 
       <div className="mt-5 grid gap-5 sm:grid-cols-[8rem_1fr]">
         <div>
-          <label htmlFor={`wr-count-${workshop}`} className="label text-slate">
+          <label htmlFor={`wr-count-${slug}`} className="label text-slate">
             People
           </label>
           <input
-            id={`wr-count-${workshop}`}
+            id={`wr-count-${slug}`}
             inputMode="numeric"
             value={attendees}
             onChange={(e) => setAttendees(e.target.value)}
@@ -113,11 +128,11 @@ export function WorkshopRegisterForm({
           />
         </div>
         <div>
-          <label htmlFor={`wr-note-${workshop}`} className="label text-slate">
+          <label htmlFor={`wr-note-${slug}`} className="label text-slate">
             Anything we should know? <span className="normal-case tracking-normal">(optional)</span>
           </label>
           <input
-            id={`wr-note-${workshop}`}
+            id={`wr-note-${slug}`}
             value={note}
             onChange={(e) => setNote(e.target.value)}
             disabled={state === "submitting"}
