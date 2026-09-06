@@ -27,7 +27,7 @@ export const nationalStats: Stat[] = [
     id: "us-opioid-2025",
     value: 44564,
     display: "44,564",
-    label: "of those involved opioids",
+    label: "U.S. overdose deaths involving opioids in 2025",
     source: "CDC / NCHS provisional",
     sourceHref: "https://www.cdc.gov/nchs/pressroom/releases/20260513.html",
     year: "2025",

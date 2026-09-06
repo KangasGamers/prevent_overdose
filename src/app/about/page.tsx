@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ArrowRight } from "@/components/icons";
 import { org, boardRoles } from "@/lib/site";
-import { ctStats, cdcAttribution } from "@/lib/stats";
+import { nationalStats, cdcAttribution } from "@/lib/stats";
 
 const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
 const openBoardSeats = boardRoles.filter((r) => !("name" in r)).length;
@@ -51,10 +51,10 @@ export default function AboutPage() {
       <section className="border-b border-[var(--rule-strong)] bg-paper-deep">
         <div className="mx-auto max-w-[90rem] px-5 py-20 lg:px-8 lg:py-28">
           <h2 className="display text-[clamp(2rem,4.6vw,3.2rem)]">
-            Why Connecticut
+            Why this matters
           </h2>
           <div className="mt-14 grid gap-px border border-[var(--rule-strong)] bg-[var(--rule-strong)] sm:grid-cols-2">
-            {ctStats.map((s) => (
+            {nationalStats.map((s) => (
               <div key={s.id} className="bg-paper-deep p-8 lg:p-10">
                 <p className="tabular display text-[clamp(2.8rem,6vw,4.5rem)] text-red">
                   {s.display}
@@ -76,7 +76,8 @@ export default function AboutPage() {
             ))}
           </div>
           <p className="measure mt-10 text-[1rem] leading-relaxed text-ink-soft">
-            Deaths are falling here and nationally, and the CDC names{" "}
+            After decades of rising, overdose deaths are now falling &mdash; and
+            the CDC names{" "}
             <a
               href={cdcAttribution.sourceHref}
               target="_blank"
@@ -85,7 +86,8 @@ export default function AboutPage() {
             >
               &ldquo;{cdcAttribution.quote}&rdquo;
             </a>{" "}
-            among the reasons why. Our work is the local end of that.
+            among the reasons why. Our work is a piece of that: free naloxone and
+            the training to use it, in as many hands as we can reach.
           </p>
         </div>
       </section>
