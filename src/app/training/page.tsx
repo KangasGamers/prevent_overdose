@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { ArrowRight, Users, Check, Shield, NasalSpray } from "@/components/icons";
-import { course, modules } from "@/lib/training";
+import { course, modules, trainingLive } from "@/lib/training";
 
 export const metadata: Metadata = {
   title: "Narcan Certification",
@@ -40,7 +40,11 @@ export default function TrainingPage() {
     <>
       <PageHeader
         title="Narcan Certification"
-        lede={course.tagline}
+        lede={
+          trainingLive
+            ? course.tagline
+            : "A free online course to recognize and reverse an opioid overdose. We're filming the modules now — here's what it covers."
+        }
       />
 
       <section className="border-b border-[var(--rule-strong)]">
@@ -72,14 +76,20 @@ export default function TrainingPage() {
             ))}
           </ol>
 
-          <div className="mt-12 flex flex-wrap gap-4">
-            <Link
-              href="/training/course"
-              className="group inline-flex items-center gap-2.5 border border-red bg-red px-7 py-4 text-paper transition-colors duration-200 hover:bg-red-deep hover:border-red-deep"
-            >
-              <span className="label">Start the course</span>
-              <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
-            </Link>
+          <div className="mt-12 flex flex-wrap items-center gap-4">
+            {trainingLive ? (
+              <Link
+                href="/training/course"
+                className="group inline-flex items-center gap-2.5 border border-red bg-red px-7 py-4 text-paper transition-colors duration-200 hover:bg-red-deep hover:border-red-deep"
+              >
+                <span className="label">Start the course</span>
+                <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center gap-2.5 border border-dashed border-slate/60 px-7 py-4 text-slate">
+                <span className="label">Modules coming soon</span>
+              </span>
+            )}
             <Link
               href="/get-narcan"
               className="inline-flex items-center gap-2.5 border border-ink px-7 py-4 transition-colors duration-200 hover:border-red hover:bg-red hover:text-paper"

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CoursePlayer } from "@/components/training/course-player";
+import { TrainingComingSoon } from "@/components/training/coming-soon";
+import { trainingLive } from "@/lib/training";
 
 export const metadata: Metadata = {
   title: "Course modules",
@@ -26,7 +28,7 @@ export default function CoursePage() {
         </p>
 
         <div className="mt-12">
-          <CoursePlayer />
+          {trainingLive ? <CoursePlayer /> : <TrainingComingSoon />}
         </div>
       </div>
     </section>

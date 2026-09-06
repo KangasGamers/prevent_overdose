@@ -10,6 +10,14 @@
  * PUBLIC playback policy, then paste the playback ID here).
  */
 
+/**
+ * Master switch. While the module videos are still being produced, set this to
+ * `false`: the course/quiz/submit routes show a "coming soon" state instead of
+ * a broken player, and the /training landing CTA reflects it. Flip to `true`
+ * once every module in `modules` has a real `muxPlaybackId`.
+ */
+export const trainingLive = false;
+
 export const course = {
   title: "Narcan Certification",
   tagline:

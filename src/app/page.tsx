@@ -122,9 +122,9 @@ export default function HomePage() {
                 Icon: Users,
                 title: "Training",
                 body:
-                  "A free online certification course, and in-person sessions for schools, workplaces, and community groups. Recognize an overdose, give a dose, keep someone breathing until help arrives.",
+                  "A free online certification course launching soon, plus in-person sessions for schools, workplaces, and community groups. Recognize an overdose, give a dose, keep someone breathing until help arrives.",
                 href: "/training",
-                cta: "Get certified",
+                cta: "See what's covered",
               },
               {
                 Icon: Shield,

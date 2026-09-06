@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CertSubmitForm } from "@/components/training/cert-submit-form";
+import { TrainingComingSoon } from "@/components/training/coming-soon";
+import { trainingLive } from "@/lib/training";
 
 export const metadata: Metadata = {
   title: "Submit your demonstration",
@@ -25,7 +27,7 @@ export default function TrainingSubmitPage() {
         </p>
 
         <div className="mt-12">
-          <CertSubmitForm />
+          {trainingLive ? <CertSubmitForm /> : <TrainingComingSoon />}
         </div>
       </div>
     </section>

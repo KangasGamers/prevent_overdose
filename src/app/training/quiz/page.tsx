@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Quiz } from "@/components/training/quiz";
+import { TrainingComingSoon } from "@/components/training/coming-soon";
+import { trainingLive } from "@/lib/training";
 
 export const metadata: Metadata = {
   title: "Quiz",
@@ -23,7 +25,7 @@ export default function QuizPage() {
         </p>
 
         <div className="mt-12">
-          <Quiz />
+          {trainingLive ? <Quiz /> : <TrainingComingSoon />}
         </div>
       </div>
     </section>

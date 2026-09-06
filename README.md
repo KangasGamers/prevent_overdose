@@ -83,6 +83,10 @@ a quiz that unlocks only when every module is complete (`/training/quiz`), a
 demonstration-video submission (`/training/submit`), and a printable certificate
 template (`/training/certificate?name=…&issued=…&id=…`).
 
+- **Not live yet.** `trainingLive` in `src/lib/training.ts` is `false`, so
+  `/training` shows "modules coming soon" and the course/quiz/submit routes show
+  a placeholder instead of the player. Flip it to `true` once every module has a
+  real Mux playback ID.
 - **Content is a draft.** Module titles/summaries and every quiz question in
   `src/lib/training.ts` are placeholders — rewrite them, and paste each module's
   Mux **playback ID** (public policy) into that file after uploading the videos.
