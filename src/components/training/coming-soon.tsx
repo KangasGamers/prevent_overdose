@@ -28,10 +28,10 @@ export function TrainingComingSoon() {
           <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
         </Link>
         <Link
-          href="/contact"
+          href="/workshops"
           className="inline-flex items-center gap-2.5 border border-ink px-7 py-4 transition-colors duration-200 hover:border-red hover:bg-red hover:text-paper"
         >
-          <span className="label">Ask for a session</span>
+          <span className="label">In-person workshops</span>
         </Link>
       </div>
     </div>

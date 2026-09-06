@@ -142,11 +142,11 @@ export default function GetNarcanPage() {
             Bring a training to your school or workplace
           </h2>
           <Link
-            href="/events"
+            href="/workshops"
             className="group inline-flex items-center gap-2.5 bg-paper px-7 py-4.5 text-ink transition-colors duration-200 hover:bg-blush"
           >
             <Clock className="h-[1.15rem] w-[1.15rem]" />
-            <span className="label">See sessions</span>
+            <span className="label">See workshops</span>
             <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
           </Link>
         </div>

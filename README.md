@@ -101,12 +101,25 @@ template (`/training/certificate?name=…&issued=…&id=…`).
 
 ## Forms
 
-`get-narcan`, `volunteer`, `contact`, the footer newsletter, and event-notify all
-POST to `src/app/api/submit/route.ts`, which validates against the schemas in
-`src/lib/forms.ts` (shared shape, server is authoritative), drops honeypot hits,
-and emails the submission via Resend to `FORMS_TO_EMAIL` with the sender's address
-as reply-to. Set `RESEND_API_KEY`, `FORMS_TO_EMAIL`, and `FORMS_FROM_EMAIL` (see
-`.env.example`) locally and in the host's environment.
+`get-narcan`, `volunteer`, `contact`, the footer newsletter, event-notify,
+`training-cert`, and the two workshop forms (`workshop-register`,
+`workshop-host`) all POST to `src/app/api/submit/route.ts`, which validates
+against the schemas in `src/lib/forms.ts` (shared shape, server is
+authoritative), drops honeypot hits, and emails the submission via Resend to
+`FORMS_TO_EMAIL` with the sender's address as reply-to. Set `RESEND_API_KEY`,
+`FORMS_TO_EMAIL`, and `FORMS_FROM_EMAIL` (see `.env.example`) locally and in the
+host's environment.
+
+## Workshops
+
+`/workshops` lists in-person Narcan sessions from `workshops` in
+`src/lib/site.ts` (edit that array to schedule real ones — `startsAt: null`
+shows "Date to be announced"; `registerOpen: false` hides the register button).
+Each session has an inline registration form; there's also a "host a workshop"
+request form. No seat-count enforcement — the org confirms spots by email.
+Community events (`events` in the same file) show as a secondary list and keep
+their `/workshops/[slug]` detail pages. The old `/events` URLs 301 to
+`/workshops`.
 
 ## Not built (deliberately out of scope)
 

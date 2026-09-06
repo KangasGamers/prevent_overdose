@@ -261,8 +261,8 @@ export default function HomePage() {
             <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)]">
               Upcoming
             </h2>
-            <Link href="/events" className="group flex items-center gap-2 text-red">
-              <span className="label">All events</span>
+            <Link href="/workshops" className="group flex items-center gap-2 text-red">
+              <span className="label">All workshops</span>
               <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
             </Link>
           </div>
@@ -298,7 +298,7 @@ export default function HomePage() {
 
                   <div className="md:self-center">
                     <Link
-                      href={`/events/${ev.slug}`}
+                      href={`/workshops/${ev.slug}`}
                       className="group inline-flex items-center gap-2.5 border border-ink px-6 py-4 transition-colors duration-200 hover:border-red hover:bg-red hover:text-paper"
                     >
                       <span className="label">Tell me when it&rsquo;s set</span>

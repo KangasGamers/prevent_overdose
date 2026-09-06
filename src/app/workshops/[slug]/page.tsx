@@ -33,10 +33,10 @@ export default async function EventPage({
       <div className="mx-auto grid max-w-[90rem] gap-16 px-5 py-20 lg:grid-cols-[1fr_24rem] lg:gap-24 lg:px-8 lg:py-28">
         <div>
           <Link
-            href="/events"
+            href="/workshops"
             className="label text-red transition-colors hover:text-red-deep"
           >
-            ← All events
+            ← All workshops
           </Link>
           <h1 className="display mt-8 text-[clamp(2.4rem,6vw,4.5rem)]">
             {ev.title}

@@ -44,6 +44,23 @@ export const formSchemas = {
     quizScore: z.string().trim().max(20).optional(),
     website: honeypot,
   }),
+  "workshop-register": z.object({
+    workshop: z.string().trim().min(1).max(200),
+    name: z.string().trim().min(1).max(200),
+    email: z.email().max(200),
+    attendees: z.string().trim().max(20).optional(),
+    note: z.string().trim().max(2000).optional(),
+    website: honeypot,
+  }),
+  "workshop-host": z.object({
+    name: z.string().trim().min(1).max(200),
+    email: z.email().max(200),
+    organization: z.string().trim().max(200).optional(),
+    location: z.string().trim().min(1).max(300),
+    groupSize: z.string().trim().max(60).optional(),
+    note: z.string().trim().max(2000).optional(),
+    website: honeypot,
+  }),
 } as const;
 
 export type FormKind = keyof typeof formSchemas;
@@ -55,4 +72,6 @@ export const formSubjects: Record<FormKind, string> = {
   newsletter: "Newsletter signup",
   "event-notify": "Event notification signup",
   "training-cert": "Certification video — review needed",
+  "workshop-register": "Workshop registration",
+  "workshop-host": "Request to host a workshop",
 };

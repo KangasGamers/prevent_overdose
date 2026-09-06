@@ -99,9 +99,10 @@ export default function TrainingPage() {
           </div>
 
           <p className="measure mt-10 border-l-[3px] border-red pl-5 text-[0.9375rem] leading-relaxed text-ink-soft">
-            Prefer to learn in person? We bring the same training, and the kits,
-            to schools, workplaces, and community groups across the Farmington
-            Valley. <Link href="/contact" className="text-red underline decoration-red/40">Ask for a session.</Link>
+            Prefer to learn in person? We run free Narcan workshops nationwide
+            for schools, workplaces, and community groups &mdash; and everyone
+            who attends leaves with a kit.{" "}
+            <Link href="/workshops" className="text-red underline decoration-red/40">See workshops or request one.</Link>
           </p>
         </div>
       </section>

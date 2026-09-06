@@ -46,7 +46,7 @@ export const nav = [
   { label: "About", href: "/about" },
   { label: "Board", href: "/board" },
   { label: "Volunteer", href: "/volunteer" },
-  { label: "Events", href: "/events" },
+  { label: "Workshops", href: "/workshops" },
   { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -142,8 +142,53 @@ export const articles = [
 ] as const;
 
 /**
- * One real event. Its date is genuinely undecided, and the schema says so
- * rather than inventing a timestamp.
+ * In-person Narcan workshops open for registration.
+ *
+ * `startsAt` is a human-readable string ("Saturday, March 14, 2026 · 10 AM") or
+ * null while the date is still being set — the page shows "Date to be announced"
+ * rather than inventing one. `registerOpen: false` hides the register button for
+ * a listing that isn't ready yet. Add real sessions here as they're scheduled.
+ */
+export const workshops: {
+  slug: string;
+  title: string;
+  city: string;
+  startsAt: string | null;
+  locationName: string;
+  locationAddr: string;
+  capacity: number | null;
+  registerOpen: boolean;
+  description: string;
+}[] = [
+  {
+    slug: "overdose-prevention-basics-tampa",
+    title: "Overdose Prevention Basics",
+    city: "Tampa, FL",
+    startsAt: null,
+    locationName: "Tampa, Florida (venue on registration)",
+    locationAddr: "Tampa, FL",
+    capacity: 30,
+    registerOpen: true,
+    description:
+      "Our first public workshop. The core 90-minute session: recognize an opioid overdose, deliver nasal naloxone, give rescue breaths, and stay until help arrives. Everyone leaves with a free two-dose kit.",
+  },
+  {
+    slug: "train-the-trainer",
+    title: "Train the Trainer",
+    city: "Location to be announced",
+    startsAt: null,
+    locationName: "Location to be announced",
+    locationAddr: "TBA",
+    capacity: 15,
+    registerOpen: true,
+    description:
+      "For people who want to run their own sessions — teachers, coaches, RAs, HR leads. Covers the curriculum, how to source kits, and how to talk about overdose without stigma.",
+  },
+];
+
+/**
+ * One real community event. Its date is genuinely undecided, and the schema
+ * says so rather than inventing a timestamp.
  */
 export const events = [
   {
