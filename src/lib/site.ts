@@ -164,13 +164,13 @@ export const workshops: {
     slug: "overdose-prevention-basics-tampa",
     title: "Overdose Prevention Basics",
     city: "Tampa, FL",
-    startsAt: null,
+    startsAt: "Late October 2026 — exact date on registration",
     locationName: "Tampa, Florida (venue on registration)",
     locationAddr: "Tampa, FL",
-    capacity: 30,
+    capacity: null,
     registerOpen: true,
     description:
-      "Our first public workshop. The core 90-minute session: recognize an opioid overdose, deliver nasal naloxone, give rescue breaths, and stay until help arrives. Everyone leaves with a free two-dose kit.",
+      "Our first public workshop. The core 90-minute session: recognize an opioid overdose, deliver nasal naloxone, give rescue breaths, and stay until help arrives. Everyone leaves with a free two-dose kit. No seat limit — bring whoever wants to come.",
   },
   {
     slug: "train-the-trainer",
