@@ -21,15 +21,20 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: {
-    default: "PreventOverdose — Free Narcan in Connecticut",
+    default: "PreventOverdose",
     template: "%s · PreventOverdose",
   },
   description:
-    "A 501(c)(3) in Avon, Connecticut distributing free Narcan, running harm reduction training, and advocating for overdose prevention. One dose can save a life.",
+    "A 501(c)(3) nonprofit distributing free Narcan, running harm reduction training, and advocating for overdose prevention. One dose can save a life.",
   openGraph: {
-    title: "PreventOverdose — Free Narcan in Connecticut",
+    title: "PreventOverdose",
     description: org.tagline,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PreventOverdose",
+    description: org.tagline,
   },
 };
 
