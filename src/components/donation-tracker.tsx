@@ -116,6 +116,14 @@ export function DonationTracker() {
           </span>
           <span>Live from Givebutter</span>
         </div>
+
+        <Link
+          href="/donate"
+          className="group mt-8 flex w-full items-center justify-center gap-3 border border-red bg-red px-8 py-5 text-paper transition-colors duration-200 hover:border-red-deep hover:bg-red-deep sm:py-6"
+        >
+          <span className="label text-[0.9375rem]">Donate</span>
+          <ArrowRight className="h-[1.3rem] w-[1.3rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
+        </Link>
       </div>
     </section>
   );
