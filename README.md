@@ -4,14 +4,14 @@ A visual redesign of [preventoverdose.co](https://www.preventoverdose.co), built
 running Next.js application.
 
 Every route renders. Donations run through the real Givebutter campaign, and the
-five forms email the organization through Resend. There is no database and no admin
-console yet — submissions land in an inbox, not a queue.
+forms email the organization (SMTP or Resend — see below). There is no database
+and no admin console yet — submissions land in an inbox, not a queue.
 
 ## Run it
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in the Resend values
+cp .env.example .env.local   # then fill in the mail vars
 npm run dev                  # http://localhost:3000
 ```
 
@@ -19,8 +19,8 @@ npm run dev                  # http://localhost:3000
 npm run build && npm start   # production build
 ```
 
-Without the `RESEND_*` / `FORMS_*` env vars the forms return a "couldn't send"
-error; everything else works.
+Without the mail env vars the forms return a "couldn't send" error; everything
+else works.
 
 ## What's real and what isn't
 
@@ -105,10 +105,14 @@ template (`/training/certificate?name=…&issued=…&id=…`).
 `training-cert`, and the two workshop forms (`workshop-register`,
 `workshop-host`) all POST to `src/app/api/submit/route.ts`, which validates
 against the schemas in `src/lib/forms.ts` (shared shape, server is
-authoritative), drops honeypot hits, and emails the submission via Resend to
-`FORMS_TO_EMAIL` with the sender's address as reply-to. Set `RESEND_API_KEY`,
-`FORMS_TO_EMAIL`, and `FORMS_FROM_EMAIL` (see `.env.example`) locally and in the
-host's environment.
+authoritative), drops honeypot hits, and emails the submission to
+`FORMS_TO_EMAIL` with the sender's address as reply-to.
+
+`src/lib/mailer.ts` picks a backend from the env: **SMTP** (`SMTP_HOST` +
+`SMTP_USER` + `SMTP_PASS` — e.g. a Google Workspace App Password, no DNS setup)
+or **Resend** (`RESEND_API_KEY` — needs a verified domain). SMTP wins if both
+are set. `FORMS_TO_EMAIL` and `FORMS_FROM_EMAIL` are required either way. See
+`.env.example`; set the same vars in the host's environment.
 
 ## Workshops
 

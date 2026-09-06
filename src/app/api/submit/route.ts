@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { z } from "zod";
 import { formSchemas, formSubjects, type FormKind } from "@/lib/forms";
+import { sendFormEmail } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 
@@ -53,19 +53,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.FORMS_TO_EMAIL;
-  const from = process.env.FORMS_FROM_EMAIL;
-  if (!apiKey || !to || !from) {
-    console.error(
-      "Form email not configured: set RESEND_API_KEY, FORMS_TO_EMAIL, FORMS_FROM_EMAIL.",
-    );
-    return NextResponse.json(
-      { error: "We couldn't send that right now. Please email us directly." },
-      { status: 500 },
-    );
-  }
-
   const replyTo =
     typeof data.email === "string"
       ? data.email
@@ -76,26 +63,11 @@ export async function POST(req: Request) {
   const subject = `[preventoverdose.co] ${formSubjects[kind]}`;
   const body = `${formSubjects[kind]}\n\n${fieldLines(data)}\n\n—\nSent from the preventoverdose.co ${kind} form.`;
 
-  try {
-    const { error } = await new Resend(apiKey).emails.send({
-      from,
-      to: to.split(",").map((s) => s.trim()),
-      replyTo,
-      subject,
-      text: body,
-    });
-    if (error) {
-      console.error("Resend send failed:", error);
-      return NextResponse.json(
-        { error: "We couldn't send that right now. Please email us directly." },
-        { status: 502 },
-      );
-    }
-  } catch (err) {
-    console.error("Resend threw:", err);
+  const result = await sendFormEmail({ subject, text: body, replyTo });
+  if (!result.ok) {
     return NextResponse.json(
       { error: "We couldn't send that right now. Please email us directly." },
-      { status: 502 },
+      { status: result.reason === "unconfigured" ? 500 : 502 },
     );
   }
 
