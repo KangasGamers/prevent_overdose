@@ -52,12 +52,18 @@ export function workshopConfirmationEmail(opts: {
 
   const html = `<!doctype html>
 <html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&display=swap');
+</style>
+</head>
 <body style="margin:0;padding:0;background:${PAPER};">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPER};">
     <tr><td align="center" style="padding:32px 16px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border:1px solid ${RULE};">
-        <tr><td style="background:${RED};padding:20px 28px;">
-          <span style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;letter-spacing:.02em;color:#ffffff;">PreventOverdose</span>
+        <tr><td style="background:${RED};padding:22px 28px;">
+          <span style="font-family:'League Spartan','Arial Narrow',Helvetica,Arial,sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;color:#ffffff;">PreventOverdose</span>
         </td></tr>
         <tr><td style="padding:28px 28px 8px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:${INK};">
           <p style="margin:0 0 16px;">Hi ${escapeHtml(firstName)},</p>
