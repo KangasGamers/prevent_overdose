@@ -4,6 +4,7 @@ import { formSchemas, formSubjects, type FormKind } from "@/lib/forms";
 import { sendFormEmail } from "@/lib/mailer";
 import { getDb } from "@/lib/db";
 import { workshops } from "@/lib/site";
+import { workshopConfirmationEmail } from "@/lib/emails";
 
 export const runtime = "nodejs";
 
@@ -64,11 +65,15 @@ export async function POST(req: Request) {
         : undefined;
 
   // --- Workshop registration: dedupe up front ------------------------------
-  // `data.workshop` is the slug. Resolve the title for the notification email.
+  // `data.workshop` is the slug. Resolve the record for the emails.
   let workshopTitle: string | undefined;
+  const workshop =
+    kind === "workshop-register"
+      ? workshops.find((w) => w.slug === String(data.workshop ?? ""))
+      : undefined;
   if (kind === "workshop-register") {
     const slug = String(data.workshop ?? "");
-    workshopTitle = workshops.find((w) => w.slug === slug)?.title ?? slug;
+    workshopTitle = workshop?.title ?? slug;
 
     if (db) {
       const { error } = await db.from("workshop_registrations").insert({
@@ -109,6 +114,22 @@ export async function POST(req: Request) {
   const subject = `[preventoverdose.co] ${label}`;
   const body = `${label}\n\n${fieldLines(data)}\n\n—\nSent from the preventoverdose.co ${kind} form.`;
   const mail = await sendFormEmail({ subject, text: body, replyTo: email });
+
+  // --- Confirmation email to a workshop registrant (best-effort) --------
+  if (kind === "workshop-register" && workshop && email) {
+    const confirm = workshopConfirmationEmail({
+      name: String(data.name ?? ""),
+      workshop,
+      attendees: Number(data.attendees ?? 1) || 1,
+    });
+    const sent = await sendFormEmail({
+      to: email,
+      subject: confirm.subject,
+      text: confirm.text,
+      html: confirm.html,
+    });
+    if (!sent.ok) console.error("Registrant confirmation email failed:", sent.reason);
+  }
 
   if (!stored && !mail.ok) {
     return NextResponse.json(

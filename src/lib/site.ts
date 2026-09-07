@@ -163,6 +163,8 @@ export const workshops: {
   capacity: number | null;
   registerOpen: boolean;
   description: string;
+  /** One line for the confirmation email: "We're looking forward to …". */
+  welcome: string;
 }[] = [
   {
     slug: "overdose-prevention-basics-tampa",
@@ -175,6 +177,8 @@ export const workshops: {
     registerOpen: true,
     description:
       "Our first public workshop. The core 90-minute session: recognize an opioid overdose, deliver nasal naloxone, give rescue breaths, and stay until help arrives. Everyone leaves with a free two-dose kit. No seat limit — bring whoever wants to come.",
+    welcome:
+      "spending 90 minutes with you on the skills that reverse an overdose — and sending you home with a kit",
   },
   {
     slug: "train-the-trainer",
@@ -187,6 +191,8 @@ export const workshops: {
     registerOpen: true,
     description:
       "For people who want to run their own sessions — teachers, coaches, RAs, HR leads. Covers the curriculum, how to source kits, and how to talk about overdose without stigma.",
+    welcome:
+      "helping you carry this training back to your own community and run it yourself",
   },
 ];
 
