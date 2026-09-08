@@ -128,8 +128,12 @@ in the Supabase SQL Editor. Then:
 - `/workshops` reads `public.workshop_counts` (a view) and shows a live
   "N registered" per session. The page revalidates every 30s.
 
-Both tables have RLS enabled with no policies: only server code (service-role
-key) can touch them.
+**Access is server-only.** No user accounts exist — every read/write is
+Next.js server code with the Supabase secret key (which bypasses RLS). Both
+tables (and the count view) have RLS enabled with **zero policies** *and* have
+grants revoked from `anon` / `authenticated`, so the publishable key and the
+browser get nothing. "Per-user" policies don't apply until Supabase Auth is
+added — see the comment block in `supabase/schema.sql`.
 
 ## Workshops
 
