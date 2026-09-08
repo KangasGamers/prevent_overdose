@@ -158,51 +158,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* The five steps — the losing composition's content, in its proper place.
-          Rendered as a full red field: it is the page's most consequential
-          content and must not be the quietest band on it. */}
-      <section className="relative isolate overflow-hidden border-b border-[var(--rule-strong)] bg-red text-paper on-red">
-        <Watermark rows={9} className="text-paper opacity-[0.08]" />
-        <div className="relative mx-auto max-w-[90rem] px-5 py-20 lg:px-8 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[22rem_1fr] lg:gap-20">
-            <div>
-              <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)]">
-                If it happens
-              </h2>
-              <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-paper-on-red">
-                Five steps. Learn them before you need them.
-              </p>
-              <Link
-                href="/get-narcan"
-                className="group mt-8 inline-flex items-center gap-2.5 bg-paper px-6 py-4 text-ink transition-colors duration-200 hover:bg-blush"
-              >
-                <span className="label">Get a free kit</span>
-                <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
-              </Link>
-            </div>
-
-            <ol className="border-t border-[var(--rule-on-red)]">
-              {responseSteps.map((step, i) => (
-                <li
-                  key={step.action}
-                  className="grid gap-x-6 gap-y-2 border-b border-[var(--rule-on-red)] py-7 sm:grid-cols-[3rem_11rem_1fr]"
-                >
-                  <span className="tabular text-[0.8125rem] font-semibold text-paper">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="display-tight text-[1.3rem]">{step.action}</h3>
-                  <p className="measure text-[0.9375rem] leading-relaxed text-paper-on-red">
-                    {step.detail}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
       {/* Where the org actually stands. Honest zeros, designed as such. */}
-      <section className="border-b border-[var(--rule-strong)] bg-paper-deep">
+      <section className="border-b border-[var(--rule-strong)]">
         <div className="mx-auto max-w-[90rem] px-5 py-20 lg:px-8 lg:py-28">
           <div className="max-w-[46rem]">
             <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)]">
@@ -251,6 +208,49 @@ export default function HomePage() {
             <span className="label">{boardSeatsLabel}</span>
             <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* The five steps — the losing composition's content, in its proper place.
+          Rendered as a full red field: it is the page's most consequential
+          content and must not be the quietest band on it. */}
+      <section className="relative isolate overflow-hidden border-b border-[var(--rule-strong)] bg-red text-paper on-red">
+        <Watermark rows={9} className="text-paper opacity-[0.08]" />
+        <div className="relative mx-auto max-w-[90rem] px-5 py-20 lg:px-8 lg:py-28">
+          <div className="grid gap-12 lg:grid-cols-[22rem_1fr] lg:gap-20">
+            <div>
+              <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)]">
+                If it happens
+              </h2>
+              <p className="measure mt-6 text-[1.0625rem] leading-relaxed text-paper-on-red">
+                Five steps. Learn them before you need them.
+              </p>
+              <Link
+                href="/get-narcan"
+                className="group mt-8 inline-flex items-center gap-2.5 bg-paper px-6 py-4 text-ink transition-colors duration-200 hover:bg-blush"
+              >
+                <span className="label">Get a free kit</span>
+                <ArrowRight className="h-[1.15rem] w-[1.15rem] transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5" />
+              </Link>
+            </div>
+
+            <ol className="border-t border-[var(--rule-on-red)]">
+              {responseSteps.map((step, i) => (
+                <li
+                  key={step.action}
+                  className="grid gap-x-6 gap-y-2 border-b border-[var(--rule-on-red)] py-7 sm:grid-cols-[3rem_11rem_1fr]"
+                >
+                  <span className="tabular text-[0.8125rem] font-semibold text-paper">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="display-tight text-[1.3rem]">{step.action}</h3>
+                  <p className="measure text-[0.9375rem] leading-relaxed text-paper-on-red">
+                    {step.detail}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 

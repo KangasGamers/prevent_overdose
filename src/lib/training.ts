@@ -26,6 +26,11 @@ export const course = {
   estMinutes: 45,
   /** A module counts as watched once the learner has reached this fraction. */
   moduleCompleteAt: 0.95,
+  /**
+   * People trained to date — in person and online, combined. Update this after
+   * each workshop. It's shown on /training as a live figure; keep it honest.
+   */
+  peopleTrained: 0,
 } as const;
 
 export type Module = {

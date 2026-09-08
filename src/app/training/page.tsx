@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
+import { TrainingTracker } from "@/components/training-tracker";
 import { ArrowRight, Users, Check, Shield, NasalSpray } from "@/components/icons";
 import { course, modules, trainingLive } from "@/lib/training";
 
@@ -46,6 +47,8 @@ export default function TrainingPage() {
             : "A free online course to recognize and reverse an opioid overdose. We're filming the modules now — here's what it covers."
         }
       />
+
+      <TrainingTracker />
 
       <section className="border-b border-[var(--rule-strong)]">
         <div className="mx-auto max-w-[90rem] px-5 py-20 lg:px-8 lg:py-28">
