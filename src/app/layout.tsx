@@ -20,16 +20,22 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://preventoverdose.co"),
   title: {
     default: "PreventOverdose",
     template: "%s · PreventOverdose",
   },
   description:
     "A 501(c)(3) nonprofit distributing free Narcan, running harm reduction training, and advocating for overdose prevention. One dose can save a life.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "PreventOverdose",
     description: org.tagline,
     type: "website",
+    url: "https://preventoverdose.co",
+    siteName: "PreventOverdose",
   },
   twitter: {
     card: "summary_large_image",
