@@ -63,7 +63,7 @@ export function TrainingTracker() {
           <div className="max-w-[46rem]">
             <p className="label text-red">People trained</p>
             <p className="display mt-3 text-[clamp(1.6rem,3.6vw,2.4rem)] leading-[1.15]">
-              Zero, so far &mdash; and we&rsquo;re not going to pretend otherwise.
+              Zero, so far.
             </p>
             <p className="measure mt-5 text-[1.0625rem] leading-relaxed text-ink-soft">
               Our first workshop is this fall. This counter starts the day we
