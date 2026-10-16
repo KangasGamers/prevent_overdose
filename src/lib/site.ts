@@ -60,6 +60,7 @@ export const boardRoles = [
     role: "Executive Director",
     name: "Aaryan Patel",
     photo: "/board/executive-director.jpg",
+    photoPosition: "50%",
     bioPhoto: "/board/executive-director-portrait.jpg",
     remit:
       "Sets program direction, owns partnerships with health departments and schools, and represents the organization publicly.",
